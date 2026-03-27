@@ -1,0 +1,33 @@
+aid: flyte
+name: Flyte
+description: >-
+  Flyte is a Kubernetes-native workflow orchestration platform for ML, data, and analytics pipelines with reproducibility and type safety.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Workflow Automation
+  - Data Orchestration
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/flyte/refs/heads/main/apis.yml
+created: 2026-03-27
+modified: 2026-03-27
+specificationVersion: 0.19
+apis:
+  - aid: flyte:flyte
+    name: Flyte
+    description: >-
+      Flyte is a Kubernetes-native workflow orchestration platform for ML, data, and analytics pipelines with reproducibility and type safety.
+    humanURL: https://flyte.org
+    tags:
+      - Workflow Automation
+    properties:
+      - type: Documentation
+        url: https://docs.flyte.org
+common:
+  - type: Website
+    url: https://flyte.org
+  - type: Documentation
+    url: https://docs.flyte.org
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
