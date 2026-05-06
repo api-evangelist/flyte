@@ -1,0 +1,2414 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Flyte Admin API
+  description: The Flyte Admin API is the control-plane REST API exposed by the flyteadmin service. It is generated from the
+    flyteidl protocol buffer definitions via gRPC-Gateway and provides JSON over HTTP access to the same operations exposed
+    via gRPC. The API is used to register and manage projects, tasks, workflows, and launch plans, to create and inspect workflow,
+    node, and task executions, to receive lifecycle events, to proxy data to and from upstream object stores, and to read
+    and write matchable attribute overrides at the project, domain, and workflow levels. The same REST API powers the Flyte
+    Conso
+  tags:
+  - Flyte
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: flyte
+    baseUri: http://localhost:30080
+    description: Flyte Admin API HTTP API.
+    resources:
+    - name: api-v1-projects
+      path: /api/v1/projects
+      operations:
+      - name: listprojects
+        method: GET
+        description: List projects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: registerproject
+        method: POST
+        description: Register a project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-projects-id
+      path: /api/v1/projects/{id}
+      operations:
+      - name: updateproject
+        method: PUT
+        description: Update a project
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-tasks
+      path: /api/v1/tasks
+      operations:
+      - name: createtask
+        method: POST
+        description: Register a task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-tasks-id-project-id-domain
+      path: /api/v1/tasks/{id.project}/{id.domain}
+      operations:
+      - name: listtasks
+        method: GET
+        description: List tasks
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-tasks-id-project-id-domain-id-name
+      path: /api/v1/tasks/{id.project}/{id.domain}/{id.name}
+      operations:
+      - name: listtasksbyname
+        method: GET
+        description: List tasks for a name
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-tasks-id-project-id-domain-id-name-id-ver
+      path: /api/v1/tasks/{id.project}/{id.domain}/{id.name}/{id.version}
+      operations:
+      - name: gettask
+        method: GET
+        description: Retrieve a task
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+        - name: id.version
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-task-ids-project-domain
+      path: /api/v1/task_ids/{project}/{domain}
+      operations:
+      - name: listtaskids
+        method: GET
+        description: List task identifiers
+        inputParameters:
+        - name: project
+          in: path
+          type: string
+          required: true
+        - name: domain
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-workflows
+      path: /api/v1/workflows
+      operations:
+      - name: createworkflow
+        method: POST
+        description: Register a workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-workflows-id-project-id-domain
+      path: /api/v1/workflows/{id.project}/{id.domain}
+      operations:
+      - name: listworkflows
+        method: GET
+        description: List workflows
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-workflows-id-project-id-domain-id-name
+      path: /api/v1/workflows/{id.project}/{id.domain}/{id.name}
+      operations:
+      - name: listworkflowsbyname
+        method: GET
+        description: List workflows for a name
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-workflows-id-project-id-domain-id-name-id
+      path: /api/v1/workflows/{id.project}/{id.domain}/{id.name}/{id.version}
+      operations:
+      - name: getworkflow
+        method: GET
+        description: Retrieve a workflow
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+        - name: id.version
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-workflow-ids-project-domain
+      path: /api/v1/workflow_ids/{project}/{domain}
+      operations:
+      - name: listworkflowids
+        method: GET
+        description: List workflow identifiers
+        inputParameters:
+        - name: project
+          in: path
+          type: string
+          required: true
+        - name: domain
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-launch-plans
+      path: /api/v1/launch_plans
+      operations:
+      - name: createlaunchplan
+        method: POST
+        description: Register a launch plan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-launch-plans-id-project-id-domain
+      path: /api/v1/launch_plans/{id.project}/{id.domain}
+      operations:
+      - name: listlaunchplans
+        method: GET
+        description: List launch plans
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-launch-plans-id-project-id-domain-id-name
+      path: /api/v1/launch_plans/{id.project}/{id.domain}/{id.name}
+      operations:
+      - name: listlaunchplansbyname
+        method: GET
+        description: List launch plans for a name
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-launch-plans-id-project-id-domain-id-name
+      path: /api/v1/launch_plans/{id.project}/{id.domain}/{id.name}/{id.version}
+      operations:
+      - name: getlaunchplan
+        method: GET
+        description: Retrieve a launch plan
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+        - name: id.version
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatelaunchplan
+        method: PUT
+        description: Update launch plan state
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+        - name: id.version
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-active-launch-plans-project-domain
+      path: /api/v1/active_launch_plans/{project}/{domain}
+      operations:
+      - name: listactivelaunchplans
+        method: GET
+        description: List active launch plans
+        inputParameters:
+        - name: project
+          in: path
+          type: string
+          required: true
+        - name: domain
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-active-launch-plans-id-project-id-domain-
+      path: /api/v1/active_launch_plans/{id.project}/{id.domain}/{id.name}
+      operations:
+      - name: getactivelaunchplan
+        method: GET
+        description: Get the active launch plan for a name
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-launch-plan-ids-project-domain
+      path: /api/v1/launch_plan_ids/{project}/{domain}
+      operations:
+      - name: listlaunchplanids
+        method: GET
+        description: List launch plan identifiers
+        inputParameters:
+        - name: project
+          in: path
+          type: string
+          required: true
+        - name: domain
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-executions
+      path: /api/v1/executions
+      operations:
+      - name: createexecution
+        method: POST
+        description: Create a workflow execution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-executions-relaunch
+      path: /api/v1/executions/relaunch
+      operations:
+      - name: relaunchexecution
+        method: POST
+        description: Relaunch a workflow execution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-executions-recover
+      path: /api/v1/executions/recover
+      operations:
+      - name: recoverexecution
+        method: POST
+        description: Recover a workflow execution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-executions-id-project-id-domain
+      path: /api/v1/executions/{id.project}/{id.domain}
+      operations:
+      - name: listexecutions
+        method: GET
+        description: List workflow executions
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-executions-id-project-id-domain-id-name
+      path: /api/v1/executions/{id.project}/{id.domain}/{id.name}
+      operations:
+      - name: getexecution
+        method: GET
+        description: Retrieve a workflow execution
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: terminateexecution
+        method: DELETE
+        description: Terminate a workflow execution
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-metrics-executions-id-project-id-domain-i
+      path: /api/v1/metrics/executions/{id.project}/{id.domain}/{id.name}
+      operations:
+      - name: getexecutionmetrics
+        method: GET
+        description: Retrieve execution metrics
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-data-executions-id-project-id-domain-id-n
+      path: /api/v1/data/executions/{id.project}/{id.domain}/{id.name}
+      operations:
+      - name: getexecutiondata
+        method: GET
+        description: Retrieve signed data URLs for a workflow execution
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-node-executions-workflow-execution-id-pro
+      path: /api/v1/node_executions/{workflow_execution_id.project}/{workflow_execution_id.domain}/{workflow_execution_id.name}
+      operations:
+      - name: listnodeexecutions
+        method: GET
+        description: List node executions for a workflow execution
+        inputParameters:
+        - name: workflow_execution_id.project
+          in: path
+          type: string
+          required: true
+        - name: workflow_execution_id.domain
+          in: path
+          type: string
+          required: true
+        - name: workflow_execution_id.name
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-task-executions-node-execution-id-executi
+      path: /api/v1/task_executions/{node_execution_id.execution_id.project}/{node_execution_id.execution_id.domain}/{node_execution_id.execution_id.name}/{node_execution_id.node_id}
+      operations:
+      - name: listtaskexecutions
+        method: GET
+        description: List task executions for a node execution
+        inputParameters:
+        - name: node_execution_id.execution_id.project
+          in: path
+          type: string
+          required: true
+        - name: node_execution_id.execution_id.domain
+          in: path
+          type: string
+          required: true
+        - name: node_execution_id.execution_id.name
+          in: path
+          type: string
+          required: true
+        - name: node_execution_id.node_id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-events-workflows
+      path: /api/v1/events/workflows
+      operations:
+      - name: createworkflowevent
+        method: POST
+        description: Submit a workflow execution event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-events-nodes
+      path: /api/v1/events/nodes
+      operations:
+      - name: createnodeevent
+        method: POST
+        description: Submit a node execution event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-events-tasks
+      path: /api/v1/events/tasks
+      operations:
+      - name: createtaskevent
+        method: POST
+        description: Submit a task execution event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-named-entities-resource-type-project-doma
+      path: /api/v1/named_entities/{resource_type}/{project}/{domain}
+      operations:
+      - name: listnamedentities
+        method: GET
+        description: List named entities
+        inputParameters:
+        - name: resource_type
+          in: path
+          type: string
+          required: true
+        - name: project
+          in: path
+          type: string
+          required: true
+        - name: domain
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-named-entities-resource-type-id-project-i
+      path: /api/v1/named_entities/{resource_type}/{id.project}/{id.domain}/{id.name}
+      operations:
+      - name: getnamedentity
+        method: GET
+        description: Retrieve a named entity
+        inputParameters:
+        - name: resource_type
+          in: path
+          type: string
+          required: true
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatenamedentity
+        method: PUT
+        description: Update a named entity
+        inputParameters:
+        - name: resource_type
+          in: path
+          type: string
+          required: true
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-matchable-attributes
+      path: /api/v1/matchable_attributes
+      operations:
+      - name: listmatchableattributes
+        method: GET
+        description: List matchable attributes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-project-attributes-project
+      path: /api/v1/project_attributes/{project}
+      operations:
+      - name: getprojectattributes
+        method: GET
+        description: Retrieve project attributes
+        inputParameters:
+        - name: project
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-project-attributes-attributes-project
+      path: /api/v1/project_attributes/{attributes.project}
+      operations:
+      - name: updateprojectattributes
+        method: PUT
+        description: Update project attributes
+        inputParameters:
+        - name: attributes.project
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-project-domain-attributes-project-domain
+      path: /api/v1/project_domain_attributes/{project}/{domain}
+      operations:
+      - name: getprojectdomainattributes
+        method: GET
+        description: Retrieve project-domain attributes
+        inputParameters:
+        - name: project
+          in: path
+          type: string
+          required: true
+        - name: domain
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-project-domain-attributes-attributes-proj
+      path: /api/v1/project_domain_attributes/{attributes.project}/{attributes.domain}
+      operations:
+      - name: updateprojectdomainattributes
+        method: PUT
+        description: Update project-domain attributes
+        inputParameters:
+        - name: attributes.project
+          in: path
+          type: string
+          required: true
+        - name: attributes.domain
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-workflow-attributes-project-domain-workfl
+      path: /api/v1/workflow_attributes/{project}/{domain}/{workflow}
+      operations:
+      - name: getworkflowattributes
+        method: GET
+        description: Retrieve workflow attributes
+        inputParameters:
+        - name: project
+          in: path
+          type: string
+          required: true
+        - name: domain
+          in: path
+          type: string
+          required: true
+        - name: workflow
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-workflow-attributes-attributes-project-at
+      path: /api/v1/workflow_attributes/{attributes.project}/{attributes.domain}/{attributes.workflow}
+      operations:
+      - name: updateworkflowattributes
+        method: PUT
+        description: Update workflow attributes
+        inputParameters:
+        - name: attributes.project
+          in: path
+          type: string
+          required: true
+        - name: attributes.domain
+          in: path
+          type: string
+          required: true
+        - name: attributes.workflow
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-version
+      path: /api/v1/version
+      operations:
+      - name: getversion
+        method: GET
+        description: Retrieve flyteadmin version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: flyte-rest
+    description: REST adapter for Flyte Admin API.
+    resources:
+    - path: /api/v1/projects
+      name: listprojects
+      operations:
+      - method: GET
+        name: listprojects
+        description: List projects
+        call: flyte.listprojects
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/projects
+      name: registerproject
+      operations:
+      - method: POST
+        name: registerproject
+        description: Register a project
+        call: flyte.registerproject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/projects/{id}
+      name: updateproject
+      operations:
+      - method: PUT
+        name: updateproject
+        description: Update a project
+        call: flyte.updateproject
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/tasks
+      name: createtask
+      operations:
+      - method: POST
+        name: createtask
+        description: Register a task
+        call: flyte.createtask
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/tasks/{id.project}/{id.domain}
+      name: listtasks
+      operations:
+      - method: GET
+        name: listtasks
+        description: List tasks
+        call: flyte.listtasks
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/tasks/{id.project}/{id.domain}/{id.name}
+      name: listtasksbyname
+      operations:
+      - method: GET
+        name: listtasksbyname
+        description: List tasks for a name
+        call: flyte.listtasksbyname
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/tasks/{id.project}/{id.domain}/{id.name}/{id.version}
+      name: gettask
+      operations:
+      - method: GET
+        name: gettask
+        description: Retrieve a task
+        call: flyte.gettask
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+          id.version: rest.id.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/task_ids/{project}/{domain}
+      name: listtaskids
+      operations:
+      - method: GET
+        name: listtaskids
+        description: List task identifiers
+        call: flyte.listtaskids
+        with:
+          project: rest.project
+          domain: rest.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/workflows
+      name: createworkflow
+      operations:
+      - method: POST
+        name: createworkflow
+        description: Register a workflow
+        call: flyte.createworkflow
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/workflows/{id.project}/{id.domain}
+      name: listworkflows
+      operations:
+      - method: GET
+        name: listworkflows
+        description: List workflows
+        call: flyte.listworkflows
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/workflows/{id.project}/{id.domain}/{id.name}
+      name: listworkflowsbyname
+      operations:
+      - method: GET
+        name: listworkflowsbyname
+        description: List workflows for a name
+        call: flyte.listworkflowsbyname
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/workflows/{id.project}/{id.domain}/{id.name}/{id.version}
+      name: getworkflow
+      operations:
+      - method: GET
+        name: getworkflow
+        description: Retrieve a workflow
+        call: flyte.getworkflow
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+          id.version: rest.id.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/workflow_ids/{project}/{domain}
+      name: listworkflowids
+      operations:
+      - method: GET
+        name: listworkflowids
+        description: List workflow identifiers
+        call: flyte.listworkflowids
+        with:
+          project: rest.project
+          domain: rest.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/launch_plans
+      name: createlaunchplan
+      operations:
+      - method: POST
+        name: createlaunchplan
+        description: Register a launch plan
+        call: flyte.createlaunchplan
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/launch_plans/{id.project}/{id.domain}
+      name: listlaunchplans
+      operations:
+      - method: GET
+        name: listlaunchplans
+        description: List launch plans
+        call: flyte.listlaunchplans
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/launch_plans/{id.project}/{id.domain}/{id.name}
+      name: listlaunchplansbyname
+      operations:
+      - method: GET
+        name: listlaunchplansbyname
+        description: List launch plans for a name
+        call: flyte.listlaunchplansbyname
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/launch_plans/{id.project}/{id.domain}/{id.name}/{id.version}
+      name: getlaunchplan
+      operations:
+      - method: GET
+        name: getlaunchplan
+        description: Retrieve a launch plan
+        call: flyte.getlaunchplan
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+          id.version: rest.id.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/launch_plans/{id.project}/{id.domain}/{id.name}/{id.version}
+      name: updatelaunchplan
+      operations:
+      - method: PUT
+        name: updatelaunchplan
+        description: Update launch plan state
+        call: flyte.updatelaunchplan
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+          id.version: rest.id.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/active_launch_plans/{project}/{domain}
+      name: listactivelaunchplans
+      operations:
+      - method: GET
+        name: listactivelaunchplans
+        description: List active launch plans
+        call: flyte.listactivelaunchplans
+        with:
+          project: rest.project
+          domain: rest.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/active_launch_plans/{id.project}/{id.domain}/{id.name}
+      name: getactivelaunchplan
+      operations:
+      - method: GET
+        name: getactivelaunchplan
+        description: Get the active launch plan for a name
+        call: flyte.getactivelaunchplan
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/launch_plan_ids/{project}/{domain}
+      name: listlaunchplanids
+      operations:
+      - method: GET
+        name: listlaunchplanids
+        description: List launch plan identifiers
+        call: flyte.listlaunchplanids
+        with:
+          project: rest.project
+          domain: rest.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/executions
+      name: createexecution
+      operations:
+      - method: POST
+        name: createexecution
+        description: Create a workflow execution
+        call: flyte.createexecution
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/executions/relaunch
+      name: relaunchexecution
+      operations:
+      - method: POST
+        name: relaunchexecution
+        description: Relaunch a workflow execution
+        call: flyte.relaunchexecution
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/executions/recover
+      name: recoverexecution
+      operations:
+      - method: POST
+        name: recoverexecution
+        description: Recover a workflow execution
+        call: flyte.recoverexecution
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/executions/{id.project}/{id.domain}
+      name: listexecutions
+      operations:
+      - method: GET
+        name: listexecutions
+        description: List workflow executions
+        call: flyte.listexecutions
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/executions/{id.project}/{id.domain}/{id.name}
+      name: getexecution
+      operations:
+      - method: GET
+        name: getexecution
+        description: Retrieve a workflow execution
+        call: flyte.getexecution
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/executions/{id.project}/{id.domain}/{id.name}
+      name: terminateexecution
+      operations:
+      - method: DELETE
+        name: terminateexecution
+        description: Terminate a workflow execution
+        call: flyte.terminateexecution
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/metrics/executions/{id.project}/{id.domain}/{id.name}
+      name: getexecutionmetrics
+      operations:
+      - method: GET
+        name: getexecutionmetrics
+        description: Retrieve execution metrics
+        call: flyte.getexecutionmetrics
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/data/executions/{id.project}/{id.domain}/{id.name}
+      name: getexecutiondata
+      operations:
+      - method: GET
+        name: getexecutiondata
+        description: Retrieve signed data URLs for a workflow execution
+        call: flyte.getexecutiondata
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/node_executions/{workflow_execution_id.project}/{workflow_execution_id.domain}/{workflow_execution_id.name}
+      name: listnodeexecutions
+      operations:
+      - method: GET
+        name: listnodeexecutions
+        description: List node executions for a workflow execution
+        call: flyte.listnodeexecutions
+        with:
+          workflow_execution_id.project: rest.workflow_execution_id.project
+          workflow_execution_id.domain: rest.workflow_execution_id.domain
+          workflow_execution_id.name: rest.workflow_execution_id.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/task_executions/{node_execution_id.execution_id.project}/{node_execution_id.execution_id.domain}/{node_execution_id.execution_id.name}/{node_execution_id.node_id}
+      name: listtaskexecutions
+      operations:
+      - method: GET
+        name: listtaskexecutions
+        description: List task executions for a node execution
+        call: flyte.listtaskexecutions
+        with:
+          node_execution_id.execution_id.project: rest.node_execution_id.execution_id.project
+          node_execution_id.execution_id.domain: rest.node_execution_id.execution_id.domain
+          node_execution_id.execution_id.name: rest.node_execution_id.execution_id.name
+          node_execution_id.node_id: rest.node_execution_id.node_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/events/workflows
+      name: createworkflowevent
+      operations:
+      - method: POST
+        name: createworkflowevent
+        description: Submit a workflow execution event
+        call: flyte.createworkflowevent
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/events/nodes
+      name: createnodeevent
+      operations:
+      - method: POST
+        name: createnodeevent
+        description: Submit a node execution event
+        call: flyte.createnodeevent
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/events/tasks
+      name: createtaskevent
+      operations:
+      - method: POST
+        name: createtaskevent
+        description: Submit a task execution event
+        call: flyte.createtaskevent
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/named_entities/{resource_type}/{project}/{domain}
+      name: listnamedentities
+      operations:
+      - method: GET
+        name: listnamedentities
+        description: List named entities
+        call: flyte.listnamedentities
+        with:
+          resource_type: rest.resource_type
+          project: rest.project
+          domain: rest.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/named_entities/{resource_type}/{id.project}/{id.domain}/{id.name}
+      name: getnamedentity
+      operations:
+      - method: GET
+        name: getnamedentity
+        description: Retrieve a named entity
+        call: flyte.getnamedentity
+        with:
+          resource_type: rest.resource_type
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/named_entities/{resource_type}/{id.project}/{id.domain}/{id.name}
+      name: updatenamedentity
+      operations:
+      - method: PUT
+        name: updatenamedentity
+        description: Update a named entity
+        call: flyte.updatenamedentity
+        with:
+          resource_type: rest.resource_type
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/matchable_attributes
+      name: listmatchableattributes
+      operations:
+      - method: GET
+        name: listmatchableattributes
+        description: List matchable attributes
+        call: flyte.listmatchableattributes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/project_attributes/{project}
+      name: getprojectattributes
+      operations:
+      - method: GET
+        name: getprojectattributes
+        description: Retrieve project attributes
+        call: flyte.getprojectattributes
+        with:
+          project: rest.project
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/project_attributes/{attributes.project}
+      name: updateprojectattributes
+      operations:
+      - method: PUT
+        name: updateprojectattributes
+        description: Update project attributes
+        call: flyte.updateprojectattributes
+        with:
+          attributes.project: rest.attributes.project
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/project_domain_attributes/{project}/{domain}
+      name: getprojectdomainattributes
+      operations:
+      - method: GET
+        name: getprojectdomainattributes
+        description: Retrieve project-domain attributes
+        call: flyte.getprojectdomainattributes
+        with:
+          project: rest.project
+          domain: rest.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/project_domain_attributes/{attributes.project}/{attributes.domain}
+      name: updateprojectdomainattributes
+      operations:
+      - method: PUT
+        name: updateprojectdomainattributes
+        description: Update project-domain attributes
+        call: flyte.updateprojectdomainattributes
+        with:
+          attributes.project: rest.attributes.project
+          attributes.domain: rest.attributes.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/workflow_attributes/{project}/{domain}/{workflow}
+      name: getworkflowattributes
+      operations:
+      - method: GET
+        name: getworkflowattributes
+        description: Retrieve workflow attributes
+        call: flyte.getworkflowattributes
+        with:
+          project: rest.project
+          domain: rest.domain
+          workflow: rest.workflow
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/workflow_attributes/{attributes.project}/{attributes.domain}/{attributes.workflow}
+      name: updateworkflowattributes
+      operations:
+      - method: PUT
+        name: updateworkflowattributes
+        description: Update workflow attributes
+        call: flyte.updateworkflowattributes
+        with:
+          attributes.project: rest.attributes.project
+          attributes.domain: rest.attributes.domain
+          attributes.workflow: rest.attributes.workflow
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/version
+      name: getversion
+      operations:
+      - method: GET
+        name: getversion
+        description: Retrieve flyteadmin version
+        call: flyte.getversion
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: flyte-mcp
+    transport: http
+    description: MCP adapter for Flyte Admin API for AI agent use.
+    tools:
+    - name: listprojects
+      description: List projects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.listprojects
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: registerproject
+      description: Register a project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: flyte.registerproject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateproject
+      description: Update a project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: flyte.updateproject
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createtask
+      description: Register a task
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: flyte.createtask
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listtasks
+      description: List tasks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.listtasks
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+      inputParameters:
+      - name: id.project
+        type: string
+        description: id.project
+        required: true
+      - name: id.domain
+        type: string
+        description: id.domain
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listtasksbyname
+      description: List tasks for a name
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.listtasksbyname
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+      inputParameters:
+      - name: id.project
+        type: string
+        description: id.project
+        required: true
+      - name: id.domain
+        type: string
+        description: id.domain
+        required: true
+      - name: id.name
+        type: string
+        description: id.name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettask
+      description: Retrieve a task
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.gettask
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+        id.version: tools.id.version
+      inputParameters:
+      - name: id.project
+        type: string
+        description: id.project
+        required: true
+      - name: id.domain
+        type: string
+        description: id.domain
+        required: true
+      - name: id.name
+        type: string
+        description: id.name
+        required: true
+      - name: id.version
+        type: string
+        description: id.version
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listtaskids
+      description: List task identifiers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.listtaskids
+      with:
+        project: tools.project
+        domain: tools.domain
+      inputParameters:
+      - name: project
+        type: string
+        description: project
+        required: true
+      - name: domain
+        type: string
+        description: domain
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createworkflow
+      description: Register a workflow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: flyte.createworkflow
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listworkflows
+      description: List workflows
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.listworkflows
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+      inputParameters:
+      - name: id.project
+        type: string
+        description: id.project
+        required: true
+      - name: id.domain
+        type: string
+        description: id.domain
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listworkflowsbyname
+      description: List workflows for a name
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.listworkflowsbyname
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+      inputParameters:
+      - name: id.project
+        type: string
+        description: id.project
+        required: true
+      - name: id.domain
+        type: string
+        description: id.domain
+        required: true
+      - name: id.name
+        type: string
+        description: id.name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getworkflow
+      description: Retrieve a workflow
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.getworkflow
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+        id.version: tools.id.version
+      inputParameters:
+      - name: id.project
+        type: string
+        description: id.project
+        required: true
+      - name: id.domain
+        type: string
+        description: id.domain
+        required: true
+      - name: id.name
+        type: string
+        description: id.name
+        required: true
+      - name: id.version
+        type: string
+        description: id.version
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listworkflowids
+      description: List workflow identifiers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.listworkflowids
+      with:
+        project: tools.project
+        domain: tools.domain
+      inputParameters:
+      - name: project
+        type: string
+        description: project
+        required: true
+      - name: domain
+        type: string
+        description: domain
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createlaunchplan
+      description: Register a launch plan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: flyte.createlaunchplan
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listlaunchplans
+      description: List launch plans
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.listlaunchplans
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+      inputParameters:
+      - name: id.project
+        type: string
+        description: id.project
+        required: true
+      - name: id.domain
+        type: string
+        description: id.domain
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listlaunchplansbyname
+      description: List launch plans for a name
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.listlaunchplansbyname
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+      inputParameters:
+      - name: id.project
+        type: string
+        description: id.project
+        required: true
+      - name: id.domain
+        type: string
+        description: id.domain
+        required: true
+      - name: id.name
+        type: string
+        description: id.name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getlaunchplan
+      description: Retrieve a launch plan
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.getlaunchplan
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+        id.version: tools.id.version
+      inputParameters:
+      - name: id.project
+        type: string
+        description: id.project
+        required: true
+      - name: id.domain
+        type: string
+        description: id.domain
+        required: true
+      - name: id.name
+        type: string
+        description: id.name
+        required: true
+      - name: id.version
+        type: string
+        description: id.version
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updatelaunchplan
+      description: Update launch plan state
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: flyte.updatelaunchplan
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+        id.version: tools.id.version
+      inputParameters:
+      - name: id.project
+        type: string
+        description: id.project
+        required: true
+      - name: id.domain
+        type: string
+        description: id.domain
+        required: true
+      - name: id.name
+        type: string
+        description: id.name
+        required: true
+      - name: id.version
+        type: string
+        description: id.version
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listactivelaunchplans
+      description: List active launch plans
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.listactivelaunchplans
+      with:
+        project: tools.project
+        domain: tools.domain
+      inputParameters:
+      - name: project
+        type: string
+        description: project
+        required: true
+      - name: domain
+        type: string
+        description: domain
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getactivelaunchplan
+      description: Get the active launch plan for a name
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.getactivelaunchplan
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+      inputParameters:
+      - name: id.project
+        type: string
+        description: id.project
+        required: true
+      - name: id.domain
+        type: string
+        description: id.domain
+        required: true
+      - name: id.name
+        type: string
+        description: id.name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listlaunchplanids
+      description: List launch plan identifiers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.listlaunchplanids
+      with:
+        project: tools.project
+        domain: tools.domain
+      inputParameters:
+      - name: project
+        type: string
+        description: project
+        required: true
+      - name: domain
+        type: string
+        description: domain
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createexecution
+      description: Create a workflow execution
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: flyte.createexecution
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: relaunchexecution
+      description: Relaunch a workflow execution
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: flyte.relaunchexecution
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: recoverexecution
+      description: Recover a workflow execution
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: flyte.recoverexecution
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listexecutions
+      description: List workflow executions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.listexecutions
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+      inputParameters:
+      - name: id.project
+        type: string
+        description: id.project
+        required: true
+      - name: id.domain
+        type: string
+        description: id.domain
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getexecution
+      description: Retrieve a workflow execution
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.getexecution
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+      inputParameters:
+      - name: id.project
+        type: string
+        description: id.project
+        required: true
+      - name: id.domain
+        type: string
+        description: id.domain
+        required: true
+      - name: id.name
+        type: string
+        description: id.name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: terminateexecution
+      description: Terminate a workflow execution
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: flyte.terminateexecution
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+      inputParameters:
+      - name: id.project
+        type: string
+        description: id.project
+        required: true
+      - name: id.domain
+        type: string
+        description: id.domain
+        required: true
+      - name: id.name
+        type: string
+        description: id.name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getexecutionmetrics
+      description: Retrieve execution metrics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.getexecutionmetrics
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+      inputParameters:
+      - name: id.project
+        type: string
+        description: id.project
+        required: true
+      - name: id.domain
+        type: string
+        description: id.domain
+        required: true
+      - name: id.name
+        type: string
+        description: id.name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getexecutiondata
+      description: Retrieve signed data URLs for a workflow execution
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.getexecutiondata
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+      inputParameters:
+      - name: id.project
+        type: string
+        description: id.project
+        required: true
+      - name: id.domain
+        type: string
+        description: id.domain
+        required: true
+      - name: id.name
+        type: string
+        description: id.name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listnodeexecutions
+      description: List node executions for a workflow execution
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.listnodeexecutions
+      with:
+        workflow_execution_id.project: tools.workflow_execution_id.project
+        workflow_execution_id.domain: tools.workflow_execution_id.domain
+        workflow_execution_id.name: tools.workflow_execution_id.name
+      inputParameters:
+      - name: workflow_execution_id.project
+        type: string
+        description: workflow_execution_id.project
+        required: true
+      - name: workflow_execution_id.domain
+        type: string
+        description: workflow_execution_id.domain
+        required: true
+      - name: workflow_execution_id.name
+        type: string
+        description: workflow_execution_id.name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listtaskexecutions
+      description: List task executions for a node execution
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.listtaskexecutions
+      with:
+        node_execution_id.execution_id.project: tools.node_execution_id.execution_id.project
+        node_execution_id.execution_id.domain: tools.node_execution_id.execution_id.domain
+        node_execution_id.execution_id.name: tools.node_execution_id.execution_id.name
+        node_execution_id.node_id: tools.node_execution_id.node_id
+      inputParameters:
+      - name: node_execution_id.execution_id.project
+        type: string
+        description: node_execution_id.execution_id.project
+        required: true
+      - name: node_execution_id.execution_id.domain
+        type: string
+        description: node_execution_id.execution_id.domain
+        required: true
+      - name: node_execution_id.execution_id.name
+        type: string
+        description: node_execution_id.execution_id.name
+        required: true
+      - name: node_execution_id.node_id
+        type: string
+        description: node_execution_id.node_id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createworkflowevent
+      description: Submit a workflow execution event
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: flyte.createworkflowevent
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createnodeevent
+      description: Submit a node execution event
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: flyte.createnodeevent
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createtaskevent
+      description: Submit a task execution event
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: flyte.createtaskevent
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listnamedentities
+      description: List named entities
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.listnamedentities
+      with:
+        resource_type: tools.resource_type
+        project: tools.project
+        domain: tools.domain
+      inputParameters:
+      - name: resource_type
+        type: string
+        description: resource_type
+        required: true
+      - name: project
+        type: string
+        description: project
+        required: true
+      - name: domain
+        type: string
+        description: domain
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getnamedentity
+      description: Retrieve a named entity
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.getnamedentity
+      with:
+        resource_type: tools.resource_type
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+      inputParameters:
+      - name: resource_type
+        type: string
+        description: resource_type
+        required: true
+      - name: id.project
+        type: string
+        description: id.project
+        required: true
+      - name: id.domain
+        type: string
+        description: id.domain
+        required: true
+      - name: id.name
+        type: string
+        description: id.name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updatenamedentity
+      description: Update a named entity
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: flyte.updatenamedentity
+      with:
+        resource_type: tools.resource_type
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+      inputParameters:
+      - name: resource_type
+        type: string
+        description: resource_type
+        required: true
+      - name: id.project
+        type: string
+        description: id.project
+        required: true
+      - name: id.domain
+        type: string
+        description: id.domain
+        required: true
+      - name: id.name
+        type: string
+        description: id.name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listmatchableattributes
+      description: List matchable attributes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.listmatchableattributes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getprojectattributes
+      description: Retrieve project attributes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.getprojectattributes
+      with:
+        project: tools.project
+      inputParameters:
+      - name: project
+        type: string
+        description: project
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateprojectattributes
+      description: Update project attributes
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: flyte.updateprojectattributes
+      with:
+        attributes.project: tools.attributes.project
+      inputParameters:
+      - name: attributes.project
+        type: string
+        description: attributes.project
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getprojectdomainattributes
+      description: Retrieve project-domain attributes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.getprojectdomainattributes
+      with:
+        project: tools.project
+        domain: tools.domain
+      inputParameters:
+      - name: project
+        type: string
+        description: project
+        required: true
+      - name: domain
+        type: string
+        description: domain
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateprojectdomainattributes
+      description: Update project-domain attributes
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: flyte.updateprojectdomainattributes
+      with:
+        attributes.project: tools.attributes.project
+        attributes.domain: tools.attributes.domain
+      inputParameters:
+      - name: attributes.project
+        type: string
+        description: attributes.project
+        required: true
+      - name: attributes.domain
+        type: string
+        description: attributes.domain
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getworkflowattributes
+      description: Retrieve workflow attributes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.getworkflowattributes
+      with:
+        project: tools.project
+        domain: tools.domain
+        workflow: tools.workflow
+      inputParameters:
+      - name: project
+        type: string
+        description: project
+        required: true
+      - name: domain
+        type: string
+        description: domain
+        required: true
+      - name: workflow
+        type: string
+        description: workflow
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateworkflowattributes
+      description: Update workflow attributes
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: flyte.updateworkflowattributes
+      with:
+        attributes.project: tools.attributes.project
+        attributes.domain: tools.attributes.domain
+        attributes.workflow: tools.attributes.workflow
+      inputParameters:
+      - name: attributes.project
+        type: string
+        description: attributes.project
+        required: true
+      - name: attributes.domain
+        type: string
+        description: attributes.domain
+        required: true
+      - name: attributes.workflow
+        type: string
+        description: attributes.workflow
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getversion
+      description: Retrieve flyteadmin version
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: flyte.getversion
+      outputParameters:
+      - type: object
+        mapping: $.
