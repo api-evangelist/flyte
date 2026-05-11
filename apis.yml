@@ -75,6 +75,43 @@ common:
     url: https://flyte.org/community
   - type: Slack
     url: https://slack.flyte.org
+  - type: Integrations
+    url: https://flyte.org/integrations
+integrations:
+  - name: Vaex
+  - name: Polars
+  - name: Modin
+  - name: HuggingFace
+  - name: Pandera
+  - name: Great Expectations
+  - name: SQLAlchemy
+  - name: Snowflake
+  - name: DuckDB
+  - name: Hive
+  - name: DoltHub
+  - name: BigQuery
+  - name: Apache Spark
+  - name: DBT
+  - name: Databricks
+  - name: AWS Athena
+  - name: Feast
+  - name: PyTorch Elastic v1
+  - name: AWS Sagemaker
+  - name: Ray
+  - name: Kubeflow TensorFlow
+  - name: Kubeflow MPI
+  - name: Kubeflow PyTorch
+  - name: Horovod
+  - name: Dask
+  - name: ONNX TensorFlow
+  - name: ONNX PyTorch
+  - name: ONNX Scikit Learn
+  - name: Weights & Biases v1
+  - name: Whylogs
+  - name: MLFlow
+  - name: Kubernetes Pods
+  - name: Papermill
+  - name: AWS Batch
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
