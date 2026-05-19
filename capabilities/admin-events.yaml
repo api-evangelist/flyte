@@ -1,0 +1,131 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Flyte Admin API — Events
+  description: 'Flyte Admin API — Events. 3 operations. Lead operation: Submit a node execution event. Self-contained Naftiko
+    capability covering one Flyte business surface.'
+  tags:
+  - Flyte
+  - Events
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FLYTE_API_KEY: FLYTE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-events
+    baseUri: http://localhost:30080
+    description: Flyte Admin API — Events business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v1-events-nodes
+      path: /api/v1/events/nodes
+      operations:
+      - name: createnodeevent
+        method: POST
+        description: Submit a node execution event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-events-tasks
+      path: /api/v1/events/tasks
+      operations:
+      - name: createtaskevent
+        method: POST
+        description: Submit a task execution event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-events-workflows
+      path: /api/v1/events/workflows
+      operations:
+      - name: createworkflowevent
+        method: POST
+        description: Submit a workflow execution event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: admin-events-rest
+    port: 8080
+    description: REST adapter for Flyte Admin API — Events. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v1/events/nodes
+      name: api-v1-events-nodes
+      description: REST surface for api-v1-events-nodes.
+      operations:
+      - method: POST
+        name: createnodeevent
+        description: Submit a node execution event
+        call: admin-events.createnodeevent
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/events/tasks
+      name: api-v1-events-tasks
+      description: REST surface for api-v1-events-tasks.
+      operations:
+      - method: POST
+        name: createtaskevent
+        description: Submit a task execution event
+        call: admin-events.createtaskevent
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/events/workflows
+      name: api-v1-events-workflows
+      description: REST surface for api-v1-events-workflows.
+      operations:
+      - method: POST
+        name: createworkflowevent
+        description: Submit a workflow execution event
+        call: admin-events.createworkflowevent
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-events-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Flyte Admin API — Events. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: submit-node-execution-event
+      description: Submit a node execution event
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-events.createnodeevent
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: submit-task-execution-event
+      description: Submit a task execution event
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-events.createtaskevent
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: submit-workflow-execution-event
+      description: Submit a workflow execution event
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-events.createworkflowevent
+      outputParameters:
+      - type: object
+        mapping: $.

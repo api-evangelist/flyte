@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Flyte Admin API — NamedEntities
+  description: 'Flyte Admin API — NamedEntities. 3 operations. Lead operation: Retrieve a named entity. Self-contained Naftiko
+    capability covering one Flyte business surface.'
+  tags:
+  - Flyte
+  - NamedEntities
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FLYTE_API_KEY: FLYTE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-namedentities
+    baseUri: http://localhost:30080
+    description: Flyte Admin API — NamedEntities business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v1-named_entities-resource_type-id.project-id.domain-id.name
+      path: /api/v1/named_entities/{resource_type}/{id.project}/{id.domain}/{id.name}
+      operations:
+      - name: getnamedentity
+        method: GET
+        description: Retrieve a named entity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resource_type
+          in: path
+          type: string
+          required: true
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+      - name: updatenamedentity
+        method: PUT
+        description: Update a named entity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resource_type
+          in: path
+          type: string
+          required: true
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+    - name: api-v1-named_entities-resource_type-project-domain
+      path: /api/v1/named_entities/{resource_type}/{project}/{domain}
+      operations:
+      - name: listnamedentities
+        method: GET
+        description: List named entities
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resource_type
+          in: path
+          type: string
+          required: true
+        - name: project
+          in: path
+          type: string
+          required: true
+        - name: domain
+          in: path
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: admin-namedentities-rest
+    port: 8080
+    description: REST adapter for Flyte Admin API — NamedEntities. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v1/named-entities/{resource-type}/{id-project}/{id-domain}/{id-name}
+      name: api-v1-named-entities-resource-type-id-project-id-domain-id-name
+      description: REST surface for api-v1-named_entities-resource_type-id.project-id.domain-id.name.
+      operations:
+      - method: GET
+        name: getnamedentity
+        description: Retrieve a named entity
+        call: admin-namedentities.getnamedentity
+        with:
+          resource_type: rest.resource_type
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatenamedentity
+        description: Update a named entity
+        call: admin-namedentities.updatenamedentity
+        with:
+          resource_type: rest.resource_type
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/named-entities/{resource-type}/{project}/{domain}
+      name: api-v1-named-entities-resource-type-project-domain
+      description: REST surface for api-v1-named_entities-resource_type-project-domain.
+      operations:
+      - method: GET
+        name: listnamedentities
+        description: List named entities
+        call: admin-namedentities.listnamedentities
+        with:
+          resource_type: rest.resource_type
+          project: rest.project
+          domain: rest.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-namedentities-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Flyte Admin API — NamedEntities. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: retrieve-named-entity
+      description: Retrieve a named entity
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-namedentities.getnamedentity
+      with:
+        resource_type: tools.resource_type
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-named-entity
+      description: Update a named entity
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: admin-namedentities.updatenamedentity
+      with:
+        resource_type: tools.resource_type
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-named-entities
+      description: List named entities
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-namedentities.listnamedentities
+      with:
+        resource_type: tools.resource_type
+        project: tools.project
+        domain: tools.domain
+      outputParameters:
+      - type: object
+        mapping: $.

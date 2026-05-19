@@ -1,0 +1,133 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Flyte Admin API — Projects
+  description: 'Flyte Admin API — Projects. 3 operations. Lead operation: List projects. Self-contained Naftiko capability
+    covering one Flyte business surface.'
+  tags:
+  - Flyte
+  - Projects
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FLYTE_API_KEY: FLYTE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-projects
+    baseUri: http://localhost:30080
+    description: Flyte Admin API — Projects business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v1-projects
+      path: /api/v1/projects
+      operations:
+      - name: listprojects
+        method: GET
+        description: List projects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: registerproject
+        method: POST
+        description: Register a project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-projects-id
+      path: /api/v1/projects/{id}
+      operations:
+      - name: updateproject
+        method: PUT
+        description: Update a project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: admin-projects-rest
+    port: 8080
+    description: REST adapter for Flyte Admin API — Projects. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v1/projects
+      name: api-v1-projects
+      description: REST surface for api-v1-projects.
+      operations:
+      - method: GET
+        name: listprojects
+        description: List projects
+        call: admin-projects.listprojects
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: registerproject
+        description: Register a project
+        call: admin-projects.registerproject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/projects/{id}
+      name: api-v1-projects-id
+      description: REST surface for api-v1-projects-id.
+      operations:
+      - method: PUT
+        name: updateproject
+        description: Update a project
+        call: admin-projects.updateproject
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-projects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Flyte Admin API — Projects. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-projects
+      description: List projects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-projects.listprojects
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: register-project
+      description: Register a project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-projects.registerproject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-project
+      description: Update a project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: admin-projects.updateproject
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

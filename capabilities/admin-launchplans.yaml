@@ -1,0 +1,425 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Flyte Admin API — LaunchPlans
+  description: 'Flyte Admin API — LaunchPlans. 8 operations. Lead operation: Get the active launch plan for a name. Self-contained
+    Naftiko capability covering one Flyte business surface.'
+  tags:
+  - Flyte
+  - LaunchPlans
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FLYTE_API_KEY: FLYTE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-launchplans
+    baseUri: http://localhost:30080
+    description: Flyte Admin API — LaunchPlans business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v1-active_launch_plans-id.project-id.domain-id.name
+      path: /api/v1/active_launch_plans/{id.project}/{id.domain}/{id.name}
+      operations:
+      - name: getactivelaunchplan
+        method: GET
+        description: Get the active launch plan for a name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+    - name: api-v1-active_launch_plans-project-domain
+      path: /api/v1/active_launch_plans/{project}/{domain}
+      operations:
+      - name: listactivelaunchplans
+        method: GET
+        description: List active launch plans
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: project
+          in: path
+          type: string
+          required: true
+        - name: domain
+          in: path
+          type: string
+          required: true
+    - name: api-v1-launch_plan_ids-project-domain
+      path: /api/v1/launch_plan_ids/{project}/{domain}
+      operations:
+      - name: listlaunchplanids
+        method: GET
+        description: List launch plan identifiers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: project
+          in: path
+          type: string
+          required: true
+        - name: domain
+          in: path
+          type: string
+          required: true
+    - name: api-v1-launch_plans
+      path: /api/v1/launch_plans
+      operations:
+      - name: createlaunchplan
+        method: POST
+        description: Register a launch plan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-launch_plans-id.project-id.domain
+      path: /api/v1/launch_plans/{id.project}/{id.domain}
+      operations:
+      - name: listlaunchplans
+        method: GET
+        description: List launch plans
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+    - name: api-v1-launch_plans-id.project-id.domain-id.name
+      path: /api/v1/launch_plans/{id.project}/{id.domain}/{id.name}
+      operations:
+      - name: listlaunchplansbyname
+        method: GET
+        description: List launch plans for a name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+    - name: api-v1-launch_plans-id.project-id.domain-id.name-id.version
+      path: /api/v1/launch_plans/{id.project}/{id.domain}/{id.name}/{id.version}
+      operations:
+      - name: getlaunchplan
+        method: GET
+        description: Retrieve a launch plan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+        - name: id.version
+          in: path
+          type: string
+          required: true
+      - name: updatelaunchplan
+        method: PUT
+        description: Update launch plan state
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+        - name: id.version
+          in: path
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: admin-launchplans-rest
+    port: 8080
+    description: REST adapter for Flyte Admin API — LaunchPlans. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v1/active-launch-plans/{id-project}/{id-domain}/{id-name}
+      name: api-v1-active-launch-plans-id-project-id-domain-id-name
+      description: REST surface for api-v1-active_launch_plans-id.project-id.domain-id.name.
+      operations:
+      - method: GET
+        name: getactivelaunchplan
+        description: Get the active launch plan for a name
+        call: admin-launchplans.getactivelaunchplan
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/active-launch-plans/{project}/{domain}
+      name: api-v1-active-launch-plans-project-domain
+      description: REST surface for api-v1-active_launch_plans-project-domain.
+      operations:
+      - method: GET
+        name: listactivelaunchplans
+        description: List active launch plans
+        call: admin-launchplans.listactivelaunchplans
+        with:
+          project: rest.project
+          domain: rest.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/launch-plan-ids/{project}/{domain}
+      name: api-v1-launch-plan-ids-project-domain
+      description: REST surface for api-v1-launch_plan_ids-project-domain.
+      operations:
+      - method: GET
+        name: listlaunchplanids
+        description: List launch plan identifiers
+        call: admin-launchplans.listlaunchplanids
+        with:
+          project: rest.project
+          domain: rest.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/launch-plans
+      name: api-v1-launch-plans
+      description: REST surface for api-v1-launch_plans.
+      operations:
+      - method: POST
+        name: createlaunchplan
+        description: Register a launch plan
+        call: admin-launchplans.createlaunchplan
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/launch-plans/{id-project}/{id-domain}
+      name: api-v1-launch-plans-id-project-id-domain
+      description: REST surface for api-v1-launch_plans-id.project-id.domain.
+      operations:
+      - method: GET
+        name: listlaunchplans
+        description: List launch plans
+        call: admin-launchplans.listlaunchplans
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/launch-plans/{id-project}/{id-domain}/{id-name}
+      name: api-v1-launch-plans-id-project-id-domain-id-name
+      description: REST surface for api-v1-launch_plans-id.project-id.domain-id.name.
+      operations:
+      - method: GET
+        name: listlaunchplansbyname
+        description: List launch plans for a name
+        call: admin-launchplans.listlaunchplansbyname
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/launch-plans/{id-project}/{id-domain}/{id-name}/{id-version}
+      name: api-v1-launch-plans-id-project-id-domain-id-name-id-version
+      description: REST surface for api-v1-launch_plans-id.project-id.domain-id.name-id.version.
+      operations:
+      - method: GET
+        name: getlaunchplan
+        description: Retrieve a launch plan
+        call: admin-launchplans.getlaunchplan
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+          id.version: rest.id.version
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatelaunchplan
+        description: Update launch plan state
+        call: admin-launchplans.updatelaunchplan
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+          id.version: rest.id.version
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-launchplans-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Flyte Admin API — LaunchPlans. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-active-launch-plan-name
+      description: Get the active launch plan for a name
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-launchplans.getactivelaunchplan
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-active-launch-plans
+      description: List active launch plans
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-launchplans.listactivelaunchplans
+      with:
+        project: tools.project
+        domain: tools.domain
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-launch-plan-identifiers
+      description: List launch plan identifiers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-launchplans.listlaunchplanids
+      with:
+        project: tools.project
+        domain: tools.domain
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: register-launch-plan
+      description: Register a launch plan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-launchplans.createlaunchplan
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-launch-plans
+      description: List launch plans
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-launchplans.listlaunchplans
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-launch-plans-name
+      description: List launch plans for a name
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-launchplans.listlaunchplansbyname
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-launch-plan
+      description: Retrieve a launch plan
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-launchplans.getlaunchplan
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+        id.version: tools.id.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-launch-plan-state
+      description: Update launch plan state
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: admin-launchplans.updatelaunchplan
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+        id.version: tools.id.version
+      outputParameters:
+      - type: object
+        mapping: $.

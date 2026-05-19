@@ -1,0 +1,330 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Flyte Admin API — Executions
+  description: 'Flyte Admin API — Executions. 7 operations. Lead operation: Create a workflow execution. Self-contained Naftiko
+    capability covering one Flyte business surface.'
+  tags:
+  - Flyte
+  - Executions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FLYTE_API_KEY: FLYTE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-executions
+    baseUri: http://localhost:30080
+    description: Flyte Admin API — Executions business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v1-executions
+      path: /api/v1/executions
+      operations:
+      - name: createexecution
+        method: POST
+        description: Create a workflow execution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-executions-recover
+      path: /api/v1/executions/recover
+      operations:
+      - name: recoverexecution
+        method: POST
+        description: Recover a workflow execution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-executions-relaunch
+      path: /api/v1/executions/relaunch
+      operations:
+      - name: relaunchexecution
+        method: POST
+        description: Relaunch a workflow execution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-executions-id.project-id.domain
+      path: /api/v1/executions/{id.project}/{id.domain}
+      operations:
+      - name: listexecutions
+        method: GET
+        description: List workflow executions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+    - name: api-v1-executions-id.project-id.domain-id.name
+      path: /api/v1/executions/{id.project}/{id.domain}/{id.name}
+      operations:
+      - name: getexecution
+        method: GET
+        description: Retrieve a workflow execution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+      - name: terminateexecution
+        method: DELETE
+        description: Terminate a workflow execution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+    - name: api-v1-metrics-executions-id.project-id.domain-id.name
+      path: /api/v1/metrics/executions/{id.project}/{id.domain}/{id.name}
+      operations:
+      - name: getexecutionmetrics
+        method: GET
+        description: Retrieve execution metrics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: admin-executions-rest
+    port: 8080
+    description: REST adapter for Flyte Admin API — Executions. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v1/executions
+      name: api-v1-executions
+      description: REST surface for api-v1-executions.
+      operations:
+      - method: POST
+        name: createexecution
+        description: Create a workflow execution
+        call: admin-executions.createexecution
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/executions/recover
+      name: api-v1-executions-recover
+      description: REST surface for api-v1-executions-recover.
+      operations:
+      - method: POST
+        name: recoverexecution
+        description: Recover a workflow execution
+        call: admin-executions.recoverexecution
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/executions/relaunch
+      name: api-v1-executions-relaunch
+      description: REST surface for api-v1-executions-relaunch.
+      operations:
+      - method: POST
+        name: relaunchexecution
+        description: Relaunch a workflow execution
+        call: admin-executions.relaunchexecution
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/executions/{id-project}/{id-domain}
+      name: api-v1-executions-id-project-id-domain
+      description: REST surface for api-v1-executions-id.project-id.domain.
+      operations:
+      - method: GET
+        name: listexecutions
+        description: List workflow executions
+        call: admin-executions.listexecutions
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/executions/{id-project}/{id-domain}/{id-name}
+      name: api-v1-executions-id-project-id-domain-id-name
+      description: REST surface for api-v1-executions-id.project-id.domain-id.name.
+      operations:
+      - method: GET
+        name: getexecution
+        description: Retrieve a workflow execution
+        call: admin-executions.getexecution
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: terminateexecution
+        description: Terminate a workflow execution
+        call: admin-executions.terminateexecution
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/metrics/executions/{id-project}/{id-domain}/{id-name}
+      name: api-v1-metrics-executions-id-project-id-domain-id-name
+      description: REST surface for api-v1-metrics-executions-id.project-id.domain-id.name.
+      operations:
+      - method: GET
+        name: getexecutionmetrics
+        description: Retrieve execution metrics
+        call: admin-executions.getexecutionmetrics
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-executions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Flyte Admin API — Executions. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: create-workflow-execution
+      description: Create a workflow execution
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-executions.createexecution
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: recover-workflow-execution
+      description: Recover a workflow execution
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-executions.recoverexecution
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: relaunch-workflow-execution
+      description: Relaunch a workflow execution
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-executions.relaunchexecution
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-workflow-executions
+      description: List workflow executions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-executions.listexecutions
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-workflow-execution
+      description: Retrieve a workflow execution
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-executions.getexecution
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: terminate-workflow-execution
+      description: Terminate a workflow execution
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: admin-executions.terminateexecution
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-execution-metrics
+      description: Retrieve execution metrics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-executions.getexecutionmetrics
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+      outputParameters:
+      - type: object
+        mapping: $.

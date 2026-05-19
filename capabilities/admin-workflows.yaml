@@ -1,0 +1,273 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Flyte Admin API — Workflows
+  description: 'Flyte Admin API — Workflows. 5 operations. Lead operation: List workflow identifiers. Self-contained Naftiko
+    capability covering one Flyte business surface.'
+  tags:
+  - Flyte
+  - Workflows
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FLYTE_API_KEY: FLYTE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-workflows
+    baseUri: http://localhost:30080
+    description: Flyte Admin API — Workflows business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v1-workflow_ids-project-domain
+      path: /api/v1/workflow_ids/{project}/{domain}
+      operations:
+      - name: listworkflowids
+        method: GET
+        description: List workflow identifiers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: project
+          in: path
+          type: string
+          required: true
+        - name: domain
+          in: path
+          type: string
+          required: true
+    - name: api-v1-workflows
+      path: /api/v1/workflows
+      operations:
+      - name: createworkflow
+        method: POST
+        description: Register a workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-workflows-id.project-id.domain
+      path: /api/v1/workflows/{id.project}/{id.domain}
+      operations:
+      - name: listworkflows
+        method: GET
+        description: List workflows
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+    - name: api-v1-workflows-id.project-id.domain-id.name
+      path: /api/v1/workflows/{id.project}/{id.domain}/{id.name}
+      operations:
+      - name: listworkflowsbyname
+        method: GET
+        description: List workflows for a name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+    - name: api-v1-workflows-id.project-id.domain-id.name-id.version
+      path: /api/v1/workflows/{id.project}/{id.domain}/{id.name}/{id.version}
+      operations:
+      - name: getworkflow
+        method: GET
+        description: Retrieve a workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id.project
+          in: path
+          type: string
+          required: true
+        - name: id.domain
+          in: path
+          type: string
+          required: true
+        - name: id.name
+          in: path
+          type: string
+          required: true
+        - name: id.version
+          in: path
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: admin-workflows-rest
+    port: 8080
+    description: REST adapter for Flyte Admin API — Workflows. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v1/workflow-ids/{project}/{domain}
+      name: api-v1-workflow-ids-project-domain
+      description: REST surface for api-v1-workflow_ids-project-domain.
+      operations:
+      - method: GET
+        name: listworkflowids
+        description: List workflow identifiers
+        call: admin-workflows.listworkflowids
+        with:
+          project: rest.project
+          domain: rest.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/workflows
+      name: api-v1-workflows
+      description: REST surface for api-v1-workflows.
+      operations:
+      - method: POST
+        name: createworkflow
+        description: Register a workflow
+        call: admin-workflows.createworkflow
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/workflows/{id-project}/{id-domain}
+      name: api-v1-workflows-id-project-id-domain
+      description: REST surface for api-v1-workflows-id.project-id.domain.
+      operations:
+      - method: GET
+        name: listworkflows
+        description: List workflows
+        call: admin-workflows.listworkflows
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/workflows/{id-project}/{id-domain}/{id-name}
+      name: api-v1-workflows-id-project-id-domain-id-name
+      description: REST surface for api-v1-workflows-id.project-id.domain-id.name.
+      operations:
+      - method: GET
+        name: listworkflowsbyname
+        description: List workflows for a name
+        call: admin-workflows.listworkflowsbyname
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/workflows/{id-project}/{id-domain}/{id-name}/{id-version}
+      name: api-v1-workflows-id-project-id-domain-id-name-id-version
+      description: REST surface for api-v1-workflows-id.project-id.domain-id.name-id.version.
+      operations:
+      - method: GET
+        name: getworkflow
+        description: Retrieve a workflow
+        call: admin-workflows.getworkflow
+        with:
+          id.project: rest.id.project
+          id.domain: rest.id.domain
+          id.name: rest.id.name
+          id.version: rest.id.version
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-workflows-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Flyte Admin API — Workflows. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-workflow-identifiers
+      description: List workflow identifiers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-workflows.listworkflowids
+      with:
+        project: tools.project
+        domain: tools.domain
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: register-workflow
+      description: Register a workflow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-workflows.createworkflow
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-workflows
+      description: List workflows
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-workflows.listworkflows
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-workflows-name
+      description: List workflows for a name
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-workflows.listworkflowsbyname
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-workflow
+      description: Retrieve a workflow
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-workflows.getworkflow
+      with:
+        id.project: tools.id.project
+        id.domain: tools.id.domain
+        id.name: tools.id.name
+        id.version: tools.id.version
+      outputParameters:
+      - type: object
+        mapping: $.
