@@ -1,16 +1,12 @@
 # Flyte (flyte)
 
-Flyte is a Kubernetes-native, open-source workflow orchestration platform for machine learning, data, and analytics pipelines. It provides reproducibility, type safety, strong versioning of tasks and workflows, and a multi-tenant control plane with native first-class scheduling on Kubernetes. Flyte is a Cloud Native Computing Foundation (CNCF) incubating project.
+Flyte is a Kubernetes-native, open-source workflow orchestration platform for machine learning, data, and analytics pipelines. It provides reproducibility, type safety, strong versioning of tasks and workflows, and a multi-tenant control plane with native first-class scheduling on Kubernetes. Flyte is a Cloud Native Computing Foundation (CNCF) incubating project. Beyond the Python and Go SDKs, Flyte exposes a JSON-over-HTTP REST control-plane API (the Flyte Admin API) generated from the flyteidl protocol buffer definitions via gRPC-Gateway, which is used to register and manage projects, tasks, workflows, and launch plans, to create and inspect executions, to receive lifecycle events, and to read and write matchable attribute overrides.
 
-Beyond its Python and Go SDKs, Flyte exposes a JSON-over-HTTP REST control-plane API — the Flyte Admin API — generated from the flyteidl protocol buffer definitions via gRPC-Gateway. The same REST API powers the Flyte Console UI and is the primary programmatic interface for registering and managing projects, tasks, workflows, and launch plans, for creating and inspecting workflow, node, and task executions, for receiving lifecycle events, and for reading and writing matchable attribute overrides.
-
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/flyte/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/flyte/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/flyte/refs/heads/main/apis.yml)
 
 ## Scope
 
 - **Type:** Index
-- **Position:** Consuming
-- **Access:** 3rd-Party
 
 ## Tags
 
@@ -20,35 +16,42 @@ Beyond its Python and Go SDKs, Flyte exposes a JSON-over-HTTP REST control-plane
 - Machine Learning
 - Workflow Automation
 
+## Timestamps
+
+- **Created:** 2026-03-27
+- **Modified:** 2026-05-19
+
 ## APIs
 
 ### Flyte Admin API
 
-The Flyte Admin API is exposed by the flyteadmin service and provides REST access to the Flyte control plane. The API surface mirrors the gRPC services defined in flyteidl and covers project, task, workflow, and launch plan registration; execution lifecycle; named entity metadata; matchable attribute configuration; lifecycle events; and signed-URL data proxying.
+The Flyte Admin API is the control-plane REST API exposed by the flyteadmin service. It is generated from the flyteidl protocol buffer definitions via gRPC-Gateway and provides JSON over HTTP access to the same operations exposed via gRPC. The API is used to register and manage projects, tasks, workflows, and launch plans, to create and inspect workflow, node, and task executions, to receive lifecycle events, to proxy data to and from upstream object stores, and to read and write matchable attribute overrides at the project, domain, and workflow levels. The same REST API powers the Flyte Console UI and is the primary programmatic interface for operating a Flyte cluster.
 
-Endpoint categories include:
+- **Human URL:** [https://docs.flyte.org](https://docs.flyte.org)
+- **Base URL:** `http://localhost:30080`
 
-- **Projects** — `/api/v1/projects`, `/api/v1/projects/{id}`
-- **Tasks** — `/api/v1/tasks`, `/api/v1/tasks/{id.project}/{id.domain}`, `/api/v1/tasks/{id.project}/{id.domain}/{id.name}`, `/api/v1/tasks/{id.project}/{id.domain}/{id.name}/{id.version}`, `/api/v1/task_ids/{project}/{domain}`
-- **Workflows** — `/api/v1/workflows`, `/api/v1/workflows/{id.project}/{id.domain}`, `/api/v1/workflows/{id.project}/{id.domain}/{id.name}`, `/api/v1/workflows/{id.project}/{id.domain}/{id.name}/{id.version}`, `/api/v1/workflow_ids/{project}/{domain}`
-- **Launch Plans** — `/api/v1/launch_plans`, `/api/v1/launch_plans/{id.project}/{id.domain}/{id.name}/{id.version}`, `/api/v1/active_launch_plans/{project}/{domain}`, `/api/v1/launch_plan_ids/{project}/{domain}`
-- **Executions** — `/api/v1/executions`, `/api/v1/executions/{id.project}/{id.domain}/{id.name}`, `/api/v1/executions/relaunch`, `/api/v1/executions/recover`, `/api/v1/metrics/executions/{id.project}/{id.domain}/{id.name}`
-- **Node Executions** — `/api/v1/node_executions/{workflow_execution_id.project}/{workflow_execution_id.domain}/{workflow_execution_id.name}`
-- **Task Executions** — `/api/v1/task_executions/{node_execution_id.execution_id.project}/{node_execution_id.execution_id.domain}/{node_execution_id.execution_id.name}/{node_execution_id.node_id}`
-- **Events** — `/api/v1/events/workflows`, `/api/v1/events/nodes`, `/api/v1/events/tasks`
-- **Data Proxy** — `/api/v1/data/executions/{id.project}/{id.domain}/{id.name}`
-- **Named Entities** — `/api/v1/named_entities/{resource_type}/{project}/{domain}`, `/api/v1/named_entities/{resource_type}/{id.project}/{id.domain}/{id.name}`
-- **Matchable Attributes** — `/api/v1/matchable_attributes`, `/api/v1/project_attributes/{project}`, `/api/v1/project_domain_attributes/{project}/{domain}`, `/api/v1/workflow_attributes/{project}/{domain}/{workflow}`
-- **Version** — `/api/v1/version`
+#### Tags
 
-**Documentation:** [https://docs.flyte.org](https://docs.flyte.org)
+- Workflow Orchestration
+- Control Plane
+- Executions
+- Launch Plans
+- Projects
+- Tasks
+- Workflows
 
-**OpenAPI:** [openapi/flyte-admin-api-openapi.yml](openapi/flyte-admin-api-openapi.yml)
+#### Properties
 
-**Source Swagger:** [admin.swagger.json](https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json)
+- [Documentation](https://docs.flyte.org)
+- [OpenAPI](openapi/flyte-admin-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/flyte-admin-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/flyte-admin-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [GitHub Repository](https://github.com/flyteorg/flyte)
+- [Source Swagger](https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json)
 
 ## Common Properties
 
+- [LinkedIn](https://www.linkedin.com/showcase/flyte-oss)
 - [Website](https://flyte.org)
 - [Documentation](https://docs.flyte.org)
 - [GitHub Repository](https://github.com/flyteorg/flyte)
@@ -56,14 +59,9 @@ Endpoint categories include:
 - [Blog](https://flyte.org/blog)
 - [Community](https://flyte.org/community)
 - [Slack](https://slack.flyte.org)
-
-## Timestamps
-
-- **Created:** 2026-03-27
-- **Modified:** 2026-04-28
+- [Integrations](https://flyte.org/integrations)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com
