@@ -1,0 +1,1100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Flyte Admin API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/projects"
+          },
+          "docs": "List projects"
+        },
+        {
+          "info": {
+            "name": "Register a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/projects"
+          },
+          "docs": "Register a project"
+        },
+        {
+          "info": {
+            "name": "Update a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:30080/api/v1/projects/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a project"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Register a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/tasks"
+          },
+          "docs": "Register a task"
+        },
+        {
+          "info": {
+            "name": "List tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/tasks/:id.project/:id.domain",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List tasks"
+        },
+        {
+          "info": {
+            "name": "List tasks for a name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/tasks/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List tasks for a name"
+        },
+        {
+          "info": {
+            "name": "Retrieve a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/tasks/:id.project/:id.domain/:id.name/:id.version",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a task"
+        },
+        {
+          "info": {
+            "name": "List task identifiers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/task_ids/:project/:domain",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List task identifiers"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Workflows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Register a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/workflows"
+          },
+          "docs": "Register a workflow"
+        },
+        {
+          "info": {
+            "name": "List workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/workflows/:id.project/:id.domain",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List workflows"
+        },
+        {
+          "info": {
+            "name": "List workflows for a name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/workflows/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List workflows for a name"
+        },
+        {
+          "info": {
+            "name": "Retrieve a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/workflows/:id.project/:id.domain/:id.name/:id.version",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a workflow"
+        },
+        {
+          "info": {
+            "name": "List workflow identifiers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/workflow_ids/:project/:domain",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List workflow identifiers"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "LaunchPlans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Register a launch plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/launch_plans"
+          },
+          "docs": "Register a launch plan"
+        },
+        {
+          "info": {
+            "name": "List launch plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/launch_plans/:id.project/:id.domain",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List launch plans"
+        },
+        {
+          "info": {
+            "name": "List launch plans for a name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/launch_plans/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List launch plans for a name"
+        },
+        {
+          "info": {
+            "name": "Retrieve a launch plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/launch_plans/:id.project/:id.domain/:id.name/:id.version",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a launch plan"
+        },
+        {
+          "info": {
+            "name": "Update launch plan state",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:30080/api/v1/launch_plans/:id.project/:id.domain/:id.name/:id.version",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update launch plan state"
+        },
+        {
+          "info": {
+            "name": "List active launch plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/active_launch_plans/:project/:domain",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List active launch plans"
+        },
+        {
+          "info": {
+            "name": "Get the active launch plan for a name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/active_launch_plans/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the active launch plan for a name"
+        },
+        {
+          "info": {
+            "name": "List launch plan identifiers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/launch_plan_ids/:project/:domain",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List launch plan identifiers"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Executions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a workflow execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/executions"
+          },
+          "docs": "Create a workflow execution"
+        },
+        {
+          "info": {
+            "name": "Relaunch a workflow execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/executions/relaunch"
+          },
+          "docs": "Relaunch a workflow execution"
+        },
+        {
+          "info": {
+            "name": "Recover a workflow execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/executions/recover"
+          },
+          "docs": "Recover a workflow execution"
+        },
+        {
+          "info": {
+            "name": "List workflow executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/executions/:id.project/:id.domain",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List workflow executions"
+        },
+        {
+          "info": {
+            "name": "Retrieve a workflow execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/executions/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a workflow execution"
+        },
+        {
+          "info": {
+            "name": "Terminate a workflow execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:30080/api/v1/executions/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Terminate a workflow execution"
+        },
+        {
+          "info": {
+            "name": "Retrieve execution metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/metrics/executions/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve execution metrics"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "DataProxy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve signed data URLs for a workflow execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/data/executions/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve signed data URLs for a workflow execution"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "NodeExecutions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List node executions for a workflow execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/node_executions/:workflow_execution_id.project/:workflow_execution_id.domain/:workflow_execution_id.name",
+            "params": [
+              {
+                "name": "workflow_execution_id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "workflow_execution_id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "workflow_execution_id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List node executions for a workflow execution"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "TaskExecutions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List task executions for a node execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/task_executions/:node_execution_id.execution_id.project/:node_execution_id.execution_id.domain/:node_execution_id.execution_id.name/:node_execution_id.node_id",
+            "params": [
+              {
+                "name": "node_execution_id.execution_id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "node_execution_id.execution_id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "node_execution_id.execution_id.name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "node_execution_id.node_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List task executions for a node execution"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit a workflow execution event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/events/workflows"
+          },
+          "docs": "Submit a workflow execution event"
+        },
+        {
+          "info": {
+            "name": "Submit a node execution event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/events/nodes"
+          },
+          "docs": "Submit a node execution event"
+        },
+        {
+          "info": {
+            "name": "Submit a task execution event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/events/tasks"
+          },
+          "docs": "Submit a task execution event"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "NamedEntities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List named entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/named_entities/:resource_type/:project/:domain",
+            "params": [
+              {
+                "name": "resource_type",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List named entities"
+        },
+        {
+          "info": {
+            "name": "Retrieve a named entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/named_entities/:resource_type/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "resource_type",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a named entity"
+        },
+        {
+          "info": {
+            "name": "Update a named entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:30080/api/v1/named_entities/:resource_type/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "resource_type",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a named entity"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "MatchableAttributes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List matchable attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/matchable_attributes"
+          },
+          "docs": "List matchable attributes"
+        },
+        {
+          "info": {
+            "name": "Retrieve project attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/project_attributes/:project",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve project attributes"
+        },
+        {
+          "info": {
+            "name": "Update project attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:30080/api/v1/project_attributes/:attributes.project",
+            "params": [
+              {
+                "name": "attributes.project",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update project attributes"
+        },
+        {
+          "info": {
+            "name": "Retrieve project-domain attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/project_domain_attributes/:project/:domain",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve project-domain attributes"
+        },
+        {
+          "info": {
+            "name": "Update project-domain attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:30080/api/v1/project_domain_attributes/:attributes.project/:attributes.domain",
+            "params": [
+              {
+                "name": "attributes.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "attributes.domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update project-domain attributes"
+        },
+        {
+          "info": {
+            "name": "Retrieve workflow attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/workflow_attributes/:project/:domain/:workflow",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve workflow attributes"
+        },
+        {
+          "info": {
+            "name": "Update workflow attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:30080/api/v1/workflow_attributes/:attributes.project/:attributes.domain/:attributes.workflow",
+            "params": [
+              {
+                "name": "attributes.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "attributes.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "attributes.workflow",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update workflow attributes"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Version",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve flyteadmin version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/version"
+          },
+          "docs": "Retrieve flyteadmin version"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
