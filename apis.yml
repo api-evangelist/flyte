@@ -9,7 +9,7 @@ description: >-
   manage projects, tasks, workflows, and launch plans, to create and inspect executions, to receive lifecycle events,
   and to read and write matchable attribute overrides.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/flyte/refs/heads/main/apis.yml
 created: '2026-03-27'
 modified: '2026-05-19'
@@ -33,7 +33,7 @@ apis:
       cluster.
     humanURL: https://docs.flyte.org
     baseURL: http://localhost:30080
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     tags:
       - Workflow Orchestration
       - Control Plane
