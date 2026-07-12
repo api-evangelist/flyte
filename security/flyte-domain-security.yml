@@ -1,0 +1,21 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: flyte.org
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 16 20:17:19 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: docs.flyte.org
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 28 17:38:56 2026 GMT
+  hsts: false
+domains:
+- domain: flyte.org
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false

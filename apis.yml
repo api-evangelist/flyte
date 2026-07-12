@@ -52,6 +52,8 @@ apis:
       - type: SourceSwagger
         url: https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json
 common:
+  - type: DomainSecurity
+    url: security/flyte-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/showcase/flyte-oss
   - type: Website
