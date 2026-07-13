@@ -2,11 +2,13 @@
   "repo": "flyte",
   "feeds": [
     {
-      "source": "https://flyte.org/blog",
+      "source": "https://github.com/flyteorg",
+      "feed_url": "https://github.com/flyteorg",
+      "title": "",
       "saved": 0,
-      "error": "HTTP 404 on every fetch attempt"
+      "method": "none"
     }
   ],
-  "fetched": "2026-06-27T12:42:58Z",
+  "fetched": "2026-07-11T11:50:51Z",
   "post_count": 2
 }
