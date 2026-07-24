@@ -1,0 +1,27 @@
+openapi: 3.1.0
+info:
+  title: Flyte Admin DataProxy Version API
+  description: The Flyte Admin API is the control-plane REST API exposed by the flyteadmin service. It is generated from the flyteidl protocol buffer definitions via gRPC-Gateway and provides JSON over HTTP access to the same operations exposed via gRPC. The API is used to register and manage projects, tasks, workflows, and launch plans, to create and inspect workflow, node, and task executions, to receive lifecycle events, to proxy data to and from upstream object stores, and to read and write matchable attribute overrides at the project, domain, and workflow levels. The same REST API powers the Flyte Console UI and is the primary programmatic interface for operating a Flyte cluster.
+  version: v1
+  contact:
+    name: Flyte
+    url: https://flyte.org
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:30080
+  description: Default flyteadmin endpoint in a local sandbox cluster
+tags:
+- name: Version
+  description: Admin server version information.
+paths:
+  /api/v1/version:
+    get:
+      tags:
+      - Version
+      summary: Retrieve flyteadmin version
+      operationId: GetVersion
+      responses:
+        '200':
+          description: Server version information.

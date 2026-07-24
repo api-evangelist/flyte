@@ -1,0 +1,122 @@
+openapi: 3.1.0
+info:
+  title: Flyte Admin DataProxy Tasks API
+  description: The Flyte Admin API is the control-plane REST API exposed by the flyteadmin service. It is generated from the flyteidl protocol buffer definitions via gRPC-Gateway and provides JSON over HTTP access to the same operations exposed via gRPC. The API is used to register and manage projects, tasks, workflows, and launch plans, to create and inspect workflow, node, and task executions, to receive lifecycle events, to proxy data to and from upstream object stores, and to read and write matchable attribute overrides at the project, domain, and workflow levels. The same REST API powers the Flyte Console UI and is the primary programmatic interface for operating a Flyte cluster.
+  version: v1
+  contact:
+    name: Flyte
+    url: https://flyte.org
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:30080
+  description: Default flyteadmin endpoint in a local sandbox cluster
+tags:
+- name: Tasks
+  description: Task entity registration, listing, and retrieval.
+paths:
+  /api/v1/tasks:
+    post:
+      tags:
+      - Tasks
+      summary: Register a task
+      operationId: CreateTask
+      responses:
+        '200':
+          description: Task registered.
+  /api/v1/tasks/{id.project}/{id.domain}:
+    get:
+      tags:
+      - Tasks
+      summary: List tasks
+      operationId: ListTasks
+      parameters:
+      - name: id.project
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id.domain
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of tasks.
+  /api/v1/tasks/{id.project}/{id.domain}/{id.name}:
+    get:
+      tags:
+      - Tasks
+      summary: List tasks for a name
+      operationId: ListTasksByName
+      parameters:
+      - name: id.project
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id.domain
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id.name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of tasks.
+  /api/v1/tasks/{id.project}/{id.domain}/{id.name}/{id.version}:
+    get:
+      tags:
+      - Tasks
+      summary: Retrieve a task
+      operationId: GetTask
+      parameters:
+      - name: id.project
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id.domain
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id.name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id.version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A task entity.
+  /api/v1/task_ids/{project}/{domain}:
+    get:
+      tags:
+      - Tasks
+      summary: List task identifiers
+      operationId: ListTaskIds
+      parameters:
+      - name: project
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: domain
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of task identifiers.

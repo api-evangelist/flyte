@@ -1,0 +1,102 @@
+openapi: 3.1.0
+info:
+  title: Flyte Admin DataProxy NamedEntities API
+  description: The Flyte Admin API is the control-plane REST API exposed by the flyteadmin service. It is generated from the flyteidl protocol buffer definitions via gRPC-Gateway and provides JSON over HTTP access to the same operations exposed via gRPC. The API is used to register and manage projects, tasks, workflows, and launch plans, to create and inspect workflow, node, and task executions, to receive lifecycle events, to proxy data to and from upstream object stores, and to read and write matchable attribute overrides at the project, domain, and workflow levels. The same REST API powers the Flyte Console UI and is the primary programmatic interface for operating a Flyte cluster.
+  version: v1
+  contact:
+    name: Flyte
+    url: https://flyte.org
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:30080
+  description: Default flyteadmin endpoint in a local sandbox cluster
+tags:
+- name: NamedEntities
+  description: Named entity metadata for tasks, workflows, and launch plans.
+paths:
+  /api/v1/named_entities/{resource_type}/{project}/{domain}:
+    get:
+      tags:
+      - NamedEntities
+      summary: List named entities
+      operationId: ListNamedEntities
+      parameters:
+      - name: resource_type
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: project
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: domain
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of named entities.
+  /api/v1/named_entities/{resource_type}/{id.project}/{id.domain}/{id.name}:
+    get:
+      tags:
+      - NamedEntities
+      summary: Retrieve a named entity
+      operationId: GetNamedEntity
+      parameters:
+      - name: resource_type
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id.project
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id.domain
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id.name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A named entity.
+    put:
+      tags:
+      - NamedEntities
+      summary: Update a named entity
+      operationId: UpdateNamedEntity
+      parameters:
+      - name: resource_type
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id.project
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id.domain
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id.name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Named entity updated.
