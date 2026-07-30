@@ -9,7 +9,19 @@ description: >-
   manage projects, tasks, workflows, and launch plans, to create and inspect executions, to receive lifecycle events,
   and to read and write matchable attribute overrides.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/flyte.png
 url: https://raw.githubusercontent.com/api-evangelist/flyte/refs/heads/main/apis.yml
 created: '2026-03-27'
 modified: '2026-05-19'
@@ -21,36 +33,210 @@ tags:
   - Machine Learning
   - Workflow Automation
 apis:
-  - aid: flyte:flyte-admin-api
-    name: Flyte Admin API
-    description: >-
-      The Flyte Admin API is the control-plane REST API exposed by the flyteadmin service. It is generated from the
-      flyteidl protocol buffer definitions via gRPC-Gateway and provides JSON over HTTP access to the same operations
-      exposed via gRPC. The API is used to register and manage projects, tasks, workflows, and launch plans, to create
-      and inspect workflow, node, and task executions, to receive lifecycle events, to proxy data to and from upstream
-      object stores, and to read and write matchable attribute overrides at the project, domain, and workflow levels.
-      The same REST API powers the Flyte Console UI and is the primary programmatic interface for operating a Flyte
-      cluster.
-    humanURL: https://docs.flyte.org
-    baseURL: http://localhost:30080
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    tags:
-      - Workflow Orchestration
-      - Control Plane
-      - Executions
-      - Launch Plans
-      - Projects
-      - Tasks
-      - Workflows
-    properties:
-      - type: Documentation
-        url: https://docs.flyte.org
-      - type: OpenAPI
-        url: openapi/flyte-admin-api-openapi.yml
-      - type: GitHubRepository
-        url: https://github.com/flyteorg/flyte
-      - type: SourceSwagger
-        url: https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json
+- aid: flyte:flyte-dataproxy-api
+  name: Flyte DataProxy API
+  description: Signed URL retrieval for execution data inputs and outputs.
+  humanURL: https://docs.flyte.org
+  baseURL: http://localhost:30080
+  tags:
+  - DataProxy
+  properties:
+  - type: OpenAPI
+    url: openapi/flyte-dataproxy-api-openapi.yml
+  - type: Documentation
+    url: https://docs.flyte.org
+  - type: GitHubRepository
+    url: https://github.com/flyteorg/flyte
+  - type: SourceSwagger
+    url: >-
+      https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json
+- aid: flyte:flyte-events-api
+  name: Flyte Events API
+  description: Workflow, node, and task execution events.
+  humanURL: https://docs.flyte.org
+  baseURL: http://localhost:30080
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/flyte-events-api-openapi.yml
+  - type: Documentation
+    url: https://docs.flyte.org
+  - type: GitHubRepository
+    url: https://github.com/flyteorg/flyte
+  - type: SourceSwagger
+    url: >-
+      https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json
+- aid: flyte:flyte-executions-api
+  name: Flyte Executions API
+  description: Workflow execution creation, listing, retrieval, and termination.
+  humanURL: https://docs.flyte.org
+  baseURL: http://localhost:30080
+  tags:
+  - Executions
+  properties:
+  - type: OpenAPI
+    url: openapi/flyte-executions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.flyte.org
+  - type: GitHubRepository
+    url: https://github.com/flyteorg/flyte
+  - type: SourceSwagger
+    url: >-
+      https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json
+- aid: flyte:flyte-launchplans-api
+  name: Flyte LaunchPlans API
+  description: Launch plan registration, listing, retrieval, and activation.
+  humanURL: https://docs.flyte.org
+  baseURL: http://localhost:30080
+  tags:
+  - LaunchPlans
+  properties:
+  - type: OpenAPI
+    url: openapi/flyte-launchplans-api-openapi.yml
+  - type: Documentation
+    url: https://docs.flyte.org
+  - type: GitHubRepository
+    url: https://github.com/flyteorg/flyte
+  - type: SourceSwagger
+    url: >-
+      https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json
+- aid: flyte:flyte-matchableattributes-api
+  name: Flyte MatchableAttributes API
+  description: Matchable attribute configuration at project, domain, and workflow levels.
+  humanURL: https://docs.flyte.org
+  baseURL: http://localhost:30080
+  tags:
+  - MatchableAttributes
+  properties:
+  - type: OpenAPI
+    url: openapi/flyte-matchableattributes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.flyte.org
+  - type: GitHubRepository
+    url: https://github.com/flyteorg/flyte
+  - type: SourceSwagger
+    url: >-
+      https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json
+- aid: flyte:flyte-namedentities-api
+  name: Flyte NamedEntities API
+  description: Named entity metadata for tasks, workflows, and launch plans.
+  humanURL: https://docs.flyte.org
+  baseURL: http://localhost:30080
+  tags:
+  - NamedEntities
+  properties:
+  - type: OpenAPI
+    url: openapi/flyte-namedentities-api-openapi.yml
+  - type: Documentation
+    url: https://docs.flyte.org
+  - type: GitHubRepository
+    url: https://github.com/flyteorg/flyte
+  - type: SourceSwagger
+    url: >-
+      https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json
+- aid: flyte:flyte-nodeexecutions-api
+  name: Flyte NodeExecutions API
+  description: Node execution listing and retrieval.
+  humanURL: https://docs.flyte.org
+  baseURL: http://localhost:30080
+  tags:
+  - NodeExecutions
+  properties:
+  - type: OpenAPI
+    url: openapi/flyte-nodeexecutions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.flyte.org
+  - type: GitHubRepository
+    url: https://github.com/flyteorg/flyte
+  - type: SourceSwagger
+    url: >-
+      https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json
+- aid: flyte:flyte-projects-api
+  name: Flyte Projects API
+  description: Project registration and listing.
+  humanURL: https://docs.flyte.org
+  baseURL: http://localhost:30080
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/flyte-projects-api-openapi.yml
+  - type: Documentation
+    url: https://docs.flyte.org
+  - type: GitHubRepository
+    url: https://github.com/flyteorg/flyte
+  - type: SourceSwagger
+    url: >-
+      https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json
+- aid: flyte:flyte-taskexecutions-api
+  name: Flyte TaskExecutions API
+  description: Task execution listing and retrieval.
+  humanURL: https://docs.flyte.org
+  baseURL: http://localhost:30080
+  tags:
+  - TaskExecutions
+  properties:
+  - type: OpenAPI
+    url: openapi/flyte-taskexecutions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.flyte.org
+  - type: GitHubRepository
+    url: https://github.com/flyteorg/flyte
+  - type: SourceSwagger
+    url: >-
+      https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json
+- aid: flyte:flyte-tasks-api
+  name: Flyte Tasks API
+  description: Task entity registration, listing, and retrieval.
+  humanURL: https://docs.flyte.org
+  baseURL: http://localhost:30080
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/flyte-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.flyte.org
+  - type: GitHubRepository
+    url: https://github.com/flyteorg/flyte
+  - type: SourceSwagger
+    url: >-
+      https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json
+- aid: flyte:flyte-version-api
+  name: Flyte Version API
+  description: Admin server version information.
+  humanURL: https://docs.flyte.org
+  baseURL: http://localhost:30080
+  tags:
+  - Version
+  properties:
+  - type: OpenAPI
+    url: openapi/flyte-version-api-openapi.yml
+  - type: Documentation
+    url: https://docs.flyte.org
+  - type: GitHubRepository
+    url: https://github.com/flyteorg/flyte
+  - type: SourceSwagger
+    url: >-
+      https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json
+- aid: flyte:flyte-workflows-api
+  name: Flyte Workflows API
+  description: Workflow entity registration, listing, and retrieval.
+  humanURL: https://docs.flyte.org
+  baseURL: http://localhost:30080
+  tags:
+  - Workflows
+  properties:
+  - type: OpenAPI
+    url: openapi/flyte-workflows-api-openapi.yml
+  - type: Documentation
+    url: https://docs.flyte.org
+  - type: GitHubRepository
+    url: https://github.com/flyteorg/flyte
+  - type: SourceSwagger
+    url: >-
+      https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json
 common:
   - type: AgenticAccess
     url: agentic-access/flyte-agentic-access.yml
