@@ -1,0 +1,36 @@
+{
+  "provider": "flyte",
+  "sources": [
+    "flyte-dataproxy-api-openapi.yml",
+    "flyte-events-api-openapi.yml",
+    "flyte-executions-api-openapi.yml",
+    "flyte-launchplans-api-openapi.yml",
+    "flyte-matchableattributes-api-openapi.yml",
+    "flyte-namedentities-api-openapi.yml",
+    "flyte-nodeexecutions-api-openapi.yml",
+    "flyte-projects-api-openapi.yml",
+    "flyte-taskexecutions-api-openapi.yml",
+    "flyte-tasks-api-openapi.yml",
+    "flyte-version-api-openapi.yml",
+    "flyte-workflows-api-openapi.yml"
+  ],
+  "outputs": [
+    "flyte-dataproxy-api-openapi.yml",
+    "flyte-events-api-openapi.yml",
+    "flyte-executions-api-openapi.yml",
+    "flyte-launchplans-api-openapi.yml",
+    "flyte-matchableattributes-api-openapi.yml",
+    "flyte-namedentities-api-openapi.yml",
+    "flyte-nodeexecutions-api-openapi.yml",
+    "flyte-projects-api-openapi.yml",
+    "flyte-taskexecutions-api-openapi.yml",
+    "flyte-tasks-api-openapi.yml",
+    "flyte-version-api-openapi.yml",
+    "flyte-workflows-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,873 @@
+openapi: 3.1.0
+info:
+  title: Flyte Admin API
+  description: >-
+    The Flyte Admin API is the control-plane REST API exposed by the
+    flyteadmin service. It is generated from the flyteidl protocol buffer
+    definitions via gRPC-Gateway and provides JSON over HTTP access to the
+    same operations exposed via gRPC. The API is used to register and manage
+    projects, tasks, workflows, and launch plans, to create and inspect
+    workflow, node, and task executions, to receive lifecycle events, to
+    proxy data to and from upstream object stores, and to read and write
+    matchable attribute overrides at the project, domain, and workflow
+    levels. The same REST API powers the Flyte Console UI and is the
+    primary programmatic interface for operating a Flyte cluster.
+  version: v1
+  contact:
+    name: Flyte
+    url: https://flyte.org
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: http://localhost:30080
+    description: Default flyteadmin endpoint in a local sandbox cluster
+tags:
+  - name: Projects
+    description: Project registration and listing.
+  - name: Tasks
+    description: Task entity registration, listing, and retrieval.
+  - name: Workflows
+    description: Workflow entity registration, listing, and retrieval.
+  - name: LaunchPlans
+    description: Launch plan registration, listing, retrieval, and activation.
+  - name: Executions
+    description: Workflow execution creation, listing, retrieval, and termination.
+  - name: NodeExecutions
+    description: Node execution listing and retrieval.
+  - name: TaskExecutions
+    description: Task execution listing and retrieval.
+  - name: Events
+    description: Workflow, node, and task execution events.
+  - name: DataProxy
+    description: Signed URL retrieval for execution data inputs and outputs.
+  - name: MatchableAttributes
+    description: Matchable attribute configuration at project, domain, and workflow levels.
+  - name: NamedEntities
+    description: Named entity metadata for tasks, workflows, and launch plans.
+  - name: Version
+    description: Admin server version information.
+paths:
+  /api/v1/projects:
+    get:
+      tags: [Projects]
+      summary: List projects
+      operationId: ListProjects
+      responses:
+        '200':
+          description: A list of registered projects.
+    post:
+      tags: [Projects]
+      summary: Register a project
+      operationId: RegisterProject
+      responses:
+        '200':
+          description: Project registered.
+  /api/v1/projects/{id}:
+    put:
+      tags: [Projects]
+      summary: Update a project
+      operationId: UpdateProject
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Project updated.
+  /api/v1/tasks:
+    post:
+      tags: [Tasks]
+      summary: Register a task
+      operationId: CreateTask
+      responses:
+        '200':
+          description: Task registered.
+  /api/v1/tasks/{id.project}/{id.domain}:
+    get:
+      tags: [Tasks]
+      summary: List tasks
+      operationId: ListTasks
+      parameters:
+        - name: id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of tasks.
+  /api/v1/tasks/{id.project}/{id.domain}/{id.name}:
+    get:
+      tags: [Tasks]
+      summary: List tasks for a name
+      operationId: ListTasksByName
+      parameters:
+        - name: id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of tasks.
+  /api/v1/tasks/{id.project}/{id.domain}/{id.name}/{id.version}:
+    get:
+      tags: [Tasks]
+      summary: Retrieve a task
+      operationId: GetTask
+      parameters:
+        - name: id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.version
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A task entity.
+  /api/v1/task_ids/{project}/{domain}:
+    get:
+      tags: [Tasks]
+      summary: List task identifiers
+      operationId: ListTaskIds
+      parameters:
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: domain
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of task identifiers.
+  /api/v1/workflows:
+    post:
+      tags: [Workflows]
+      summary: Register a workflow
+      operationId: CreateWorkflow
+      responses:
+        '200':
+          description: Workflow registered.
+  /api/v1/workflows/{id.project}/{id.domain}:
+    get:
+      tags: [Workflows]
+      summary: List workflows
+      operationId: ListWorkflows
+      parameters:
+        - name: id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of workflows.
+  /api/v1/workflows/{id.project}/{id.domain}/{id.name}:
+    get:
+      tags: [Workflows]
+      summary: List workflows for a name
+      operationId: ListWorkflowsByName
+      parameters:
+        - name: id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of workflows.
+  /api/v1/workflows/{id.project}/{id.domain}/{id.name}/{id.version}:
+    get:
+      tags: [Workflows]
+      summary: Retrieve a workflow
+      operationId: GetWorkflow
+      parameters:
+        - name: id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.version
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A workflow entity.
+  /api/v1/workflow_ids/{project}/{domain}:
+    get:
+      tags: [Workflows]
+      summary: List workflow identifiers
+      operationId: ListWorkflowIds
+      parameters:
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: domain
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of workflow identifiers.
+  /api/v1/launch_plans:
+    post:
+      tags: [LaunchPlans]
+      summary: Register a launch plan
+      operationId: CreateLaunchPlan
+      responses:
+        '200':
+          description: Launch plan registered.
+  /api/v1/launch_plans/{id.project}/{id.domain}:
+    get:
+      tags: [LaunchPlans]
+      summary: List launch plans
+      operationId: ListLaunchPlans
+      parameters:
+        - name: id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of launch plans.
+  /api/v1/launch_plans/{id.project}/{id.domain}/{id.name}:
+    get:
+      tags: [LaunchPlans]
+      summary: List launch plans for a name
+      operationId: ListLaunchPlansByName
+      parameters:
+        - name: id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of launch plans.
+  /api/v1/launch_plans/{id.project}/{id.domain}/{id.name}/{id.version}:
+    get:
+      tags: [LaunchPlans]
+      summary: Retrieve a launch plan
+      operationId: GetLaunchPlan
+      parameters:
+        - name: id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.version
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A launch plan entity.
+    put:
+      tags: [LaunchPlans]
+      summary: Update launch plan state
+      operationId: UpdateLaunchPlan
+      parameters:
+        - name: id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.version
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Launch plan updated.
+  /api/v1/active_launch_plans/{project}/{domain}:
+    get:
+      tags: [LaunchPlans]
+      summary: List active launch plans
+      operationId: ListActiveLaunchPlans
+      parameters:
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: domain
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of active launch plans.
+  /api/v1/active_launch_plans/{id.project}/{id.domain}/{id.name}:
+    get:
+      tags: [LaunchPlans]
+      summary: Get the active launch plan for a name
+      operationId: GetActiveLaunchPlan
+      parameters:
+        - name: id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The active launch plan.
+  /api/v1/launch_plan_ids/{project}/{domain}:
+    get:
+      tags: [LaunchPlans]
+      summary: List launch plan identifiers
+      operationId: ListLaunchPlanIds
+      parameters:
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: domain
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of launch plan identifiers.
+  /api/v1/executions:
+    post:
+      tags: [Executions]
+      summary: Create a workflow execution
+      operationId: CreateExecution
+      responses:
+        '200':
+          description: Workflow execution created.
+  /api/v1/executions/relaunch:
+    post:
+      tags: [Executions]
+      summary: Relaunch a workflow execution
+      operationId: RelaunchExecution
+      responses:
+        '200':
+          description: Workflow execution relaunched.
+  /api/v1/executions/recover:
+    post:
+      tags: [Executions]
+      summary: Recover a workflow execution
+      operationId: RecoverExecution
+      responses:
+        '200':
+          description: Workflow execution recovered.
+  /api/v1/executions/{id.project}/{id.domain}:
+    get:
+      tags: [Executions]
+      summary: List workflow executions
+      operationId: ListExecutions
+      parameters:
+        - name: id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of workflow executions.
+  /api/v1/executions/{id.project}/{id.domain}/{id.name}:
+    get:
+      tags: [Executions]
+      summary: Retrieve a workflow execution
+      operationId: GetExecution
+      parameters:
+        - name: id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A workflow execution.
+    delete:
+      tags: [Executions]
+      summary: Terminate a workflow execution
+      operationId: TerminateExecution
+      parameters:
+        - name: id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Workflow execution terminated.
+  /api/v1/metrics/executions/{id.project}/{id.domain}/{id.name}:
+    get:
+      tags: [Executions]
+      summary: Retrieve execution metrics
+      operationId: GetExecutionMetrics
+      parameters:
+        - name: id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Execution metrics.
+  /api/v1/data/executions/{id.project}/{id.domain}/{id.name}:
+    get:
+      tags: [DataProxy]
+      summary: Retrieve signed data URLs for a workflow execution
+      operationId: GetExecutionData
+      parameters:
+        - name: id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Execution data URLs.
+  /api/v1/node_executions/{workflow_execution_id.project}/{workflow_execution_id.domain}/{workflow_execution_id.name}:
+    get:
+      tags: [NodeExecutions]
+      summary: List node executions for a workflow execution
+      operationId: ListNodeExecutions
+      parameters:
+        - name: workflow_execution_id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: workflow_execution_id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: workflow_execution_id.name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of node executions.
+  /api/v1/task_executions/{node_execution_id.execution_id.project}/{node_execution_id.execution_id.domain}/{node_execution_id.execution_id.name}/{node_execution_id.node_id}:
+    get:
+      tags: [TaskExecutions]
+      summary: List task executions for a node execution
+      operationId: ListTaskExecutions
+      parameters:
+        - name: node_execution_id.execution_id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: node_execution_id.execution_id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: node_execution_id.execution_id.name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: node_execution_id.node_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of task executions.
+  /api/v1/events/workflows:
+    post:
+      tags: [Events]
+      summary: Submit a workflow execution event
+      operationId: CreateWorkflowEvent
+      responses:
+        '200':
+          description: Event accepted.
+  /api/v1/events/nodes:
+    post:
+      tags: [Events]
+      summary: Submit a node execution event
+      operationId: CreateNodeEvent
+      responses:
+        '200':
+          description: Event accepted.
+  /api/v1/events/tasks:
+    post:
+      tags: [Events]
+      summary: Submit a task execution event
+      operationId: CreateTaskEvent
+      responses:
+        '200':
+          description: Event accepted.
+  /api/v1/named_entities/{resource_type}/{project}/{domain}:
+    get:
+      tags: [NamedEntities]
+      summary: List named entities
+      operationId: ListNamedEntities
+      parameters:
+        - name: resource_type
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: domain
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of named entities.
+  /api/v1/named_entities/{resource_type}/{id.project}/{id.domain}/{id.name}:
+    get:
+      tags: [NamedEntities]
+      summary: Retrieve a named entity
+      operationId: GetNamedEntity
+      parameters:
+        - name: resource_type
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A named entity.
+    put:
+      tags: [NamedEntities]
+      summary: Update a named entity
+      operationId: UpdateNamedEntity
+      parameters:
+        - name: resource_type
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id.name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Named entity updated.
+  /api/v1/matchable_attributes:
+    get:
+      tags: [MatchableAttributes]
+      summary: List matchable attributes
+      operationId: ListMatchableAttributes
+      responses:
+        '200':
+          description: A list of matchable attribute configurations.
+  /api/v1/project_attributes/{project}:
+    get:
+      tags: [MatchableAttributes]
+      summary: Retrieve project attributes
+      operationId: GetProjectAttributes
+      parameters:
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Project attributes.
+  /api/v1/project_attributes/{attributes.project}:
+    put:
+      tags: [MatchableAttributes]
+      summary: Update project attributes
+      operationId: UpdateProjectAttributes
+      parameters:
+        - name: attributes.project
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Project attributes updated.
+  /api/v1/project_domain_attributes/{project}/{domain}:
+    get:
+      tags: [MatchableAttributes]
+      summary: Retrieve project-domain attributes
+      operationId: GetProjectDomainAttributes
+      parameters:
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: domain
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Project-domain attributes.
+  /api/v1/project_domain_attributes/{attributes.project}/{attributes.domain}:
+    put:
+      tags: [MatchableAttributes]
+      summary: Update project-domain attributes
+      operationId: UpdateProjectDomainAttributes
+      parameters:
+        - name: attributes.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: attributes.domain
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Project-domain attributes updated.
+  /api/v1/workflow_attributes/{project}/{domain}/{workflow}:
+    get:
+      tags: [MatchableAttributes]
+      summary: Retrieve workflow attributes
+      operationId: GetWorkflowAttributes
+      parameters:
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: workflow
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Workflow attributes.
+  /api/v1/workflow_attributes/{attributes.project}/{attributes.domain}/{attributes.workflow}:
+    put:
+      tags: [MatchableAttributes]
+      summary: Update workflow attributes
+      operationId: UpdateWorkflowAttributes
+      parameters:
+        - name: attributes.project
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: attributes.domain
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: attributes.workflow
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Workflow attributes updated.
+  /api/v1/version:
+    get:
+      tags: [Version]
+      summary: Retrieve flyteadmin version
+      operationId: GetVersion
+      responses:
+        '200':
+          description: Server version information.
