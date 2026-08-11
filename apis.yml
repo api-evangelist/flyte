@@ -238,6 +238,15 @@ apis:
     url: >-
       https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json
 common:
+  - type: IssueTracker
+    url: https://github.com/flyteorg/flyte/issues
+  - type: Releases
+    url: https://github.com/flyteorg/flyte/releases
+  - type: ContributionGuide
+    url: https://github.com/flyteorg/flyte/blob/main/CONTRIBUTING.md
+  - type: License
+    name: Apache-2.0
+    url: https://github.com/flyteorg/flyte/blob/main/LICENSE
   - type: AgenticAccess
     url: agentic-access/flyte-agentic-access.yml
   - type: DomainSecurity
