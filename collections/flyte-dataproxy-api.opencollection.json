@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Flyte Admin DataProxy API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DataProxy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve signed data URLs for a workflow execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/data/executions/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve signed data URLs for a workflow execution"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Flyte Admin DataProxy TaskExecutions API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TaskExecutions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List task executions for a node execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/task_executions/:node_execution_id.execution_id.project/:node_execution_id.execution_id.domain/:node_execution_id.execution_id.name/:node_execution_id.node_id",
+            "params": [
+              {
+                "name": "node_execution_id.execution_id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "node_execution_id.execution_id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "node_execution_id.execution_id.name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "node_execution_id.node_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List task executions for a node execution"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

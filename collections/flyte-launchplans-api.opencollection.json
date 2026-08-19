@@ -1,0 +1,220 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Flyte Admin DataProxy LaunchPlans API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "LaunchPlans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Register a launch plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/launch_plans"
+          },
+          "docs": "Register a launch plan"
+        },
+        {
+          "info": {
+            "name": "List launch plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/launch_plans/:id.project/:id.domain",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List launch plans"
+        },
+        {
+          "info": {
+            "name": "List launch plans for a name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/launch_plans/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List launch plans for a name"
+        },
+        {
+          "info": {
+            "name": "Retrieve a launch plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/launch_plans/:id.project/:id.domain/:id.name/:id.version",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a launch plan"
+        },
+        {
+          "info": {
+            "name": "Update launch plan state",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:30080/api/v1/launch_plans/:id.project/:id.domain/:id.name/:id.version",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update launch plan state"
+        },
+        {
+          "info": {
+            "name": "List active launch plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/active_launch_plans/:project/:domain",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List active launch plans"
+        },
+        {
+          "info": {
+            "name": "Get the active launch plan for a name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/active_launch_plans/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the active launch plan for a name"
+        },
+        {
+          "info": {
+            "name": "List launch plan identifiers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/launch_plan_ids/:project/:domain",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List launch plan identifiers"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

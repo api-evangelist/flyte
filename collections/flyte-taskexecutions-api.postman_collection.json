@@ -1,0 +1,157 @@
+{
+  "item": [
+    {
+      "id": "633d4eed-d605-4853-ba94-0d0b405e72ba",
+      "name": "TaskExecutions",
+      "description": {
+        "content": "Task execution listing and retrieval.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f3fb5716-8372-4d11-ac0e-8dd7bf16a411",
+          "name": "List task executions for a node execution",
+          "request": {
+            "name": "List task executions for a node execution",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "task_executions",
+                ":node_execution_id.execution_id.project",
+                ":node_execution_id.execution_id.domain",
+                ":node_execution_id.execution_id.name",
+                ":node_execution_id.node_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "node_execution_id.execution_id.project",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "node_execution_id.execution_id.domain",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "node_execution_id.execution_id.name",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "node_execution_id.node_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6be710ff-2092-4fd3-8d01-9b4e4d9e695d",
+              "name": "A list of task executions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "task_executions",
+                    ":node_execution_id.execution_id.project",
+                    ":node_execution_id.execution_id.domain",
+                    ":node_execution_id.execution_id.name",
+                    ":node_execution_id.node_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "node_execution_id.execution_id.project",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "node_execution_id.execution_id.domain",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "node_execution_id.execution_id.name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "node_execution_id.node_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:30080",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1f276ade-f161-4195-bc03-9cbba24585ac",
+    "name": "Flyte Admin DataProxy TaskExecutions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Flyte Admin API is the control-plane REST API exposed by the flyteadmin service. It is generated from the flyteidl protocol buffer definitions via gRPC-Gateway and provides JSON over HTTP access to the same operations exposed via gRPC. The API is used to register and manage projects, tasks, workflows, and launch plans, to create and inspect workflow, node, and task executions, to receive lifecycle events, to proxy data to and from upstream object stores, and to read and write matchable attribute overrides at the project, domain, and workflow levels. The same REST API powers the Flyte Console UI and is the primary programmatic interface for operating a Flyte cluster.\n\nContact Support:\n Name: Flyte",
+      "type": "text/plain"
+    }
+  }
+}

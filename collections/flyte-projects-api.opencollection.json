@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Flyte Admin DataProxy Projects API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/projects"
+          },
+          "docs": "List projects"
+        },
+        {
+          "info": {
+            "name": "Register a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/projects"
+          },
+          "docs": "Register a project"
+        },
+        {
+          "info": {
+            "name": "Update a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:30080/api/v1/projects/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a project"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,167 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Flyte Admin DataProxy MatchableAttributes API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "MatchableAttributes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List matchable attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/matchable_attributes"
+          },
+          "docs": "List matchable attributes"
+        },
+        {
+          "info": {
+            "name": "Retrieve project attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/project_attributes/:project",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve project attributes"
+        },
+        {
+          "info": {
+            "name": "Update project attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:30080/api/v1/project_attributes/:attributes.project",
+            "params": [
+              {
+                "name": "attributes.project",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update project attributes"
+        },
+        {
+          "info": {
+            "name": "Retrieve project-domain attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/project_domain_attributes/:project/:domain",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve project-domain attributes"
+        },
+        {
+          "info": {
+            "name": "Update project-domain attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:30080/api/v1/project_domain_attributes/:attributes.project/:attributes.domain",
+            "params": [
+              {
+                "name": "attributes.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "attributes.domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update project-domain attributes"
+        },
+        {
+          "info": {
+            "name": "Retrieve workflow attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/workflow_attributes/:project/:domain/:workflow",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "workflow",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve workflow attributes"
+        },
+        {
+          "info": {
+            "name": "Update workflow attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:30080/api/v1/workflow_attributes/:attributes.project/:attributes.domain/:attributes.workflow",
+            "params": [
+              {
+                "name": "attributes.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "attributes.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "attributes.workflow",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update workflow attributes"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

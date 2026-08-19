@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Flyte Admin DataProxy NamedEntities API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "NamedEntities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List named entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/named_entities/:resource_type/:project/:domain",
+            "params": [
+              {
+                "name": "resource_type",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List named entities"
+        },
+        {
+          "info": {
+            "name": "Retrieve a named entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/named_entities/:resource_type/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "resource_type",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a named entity"
+        },
+        {
+          "info": {
+            "name": "Update a named entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:30080/api/v1/named_entities/:resource_type/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "resource_type",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a named entity"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

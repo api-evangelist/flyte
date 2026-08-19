@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Flyte Admin DataProxy Workflows API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Register a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/workflows"
+          },
+          "docs": "Register a workflow"
+        },
+        {
+          "info": {
+            "name": "List workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/workflows/:id.project/:id.domain",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List workflows"
+        },
+        {
+          "info": {
+            "name": "List workflows for a name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/workflows/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List workflows for a name"
+        },
+        {
+          "info": {
+            "name": "Retrieve a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/workflows/:id.project/:id.domain/:id.name/:id.version",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a workflow"
+        },
+        {
+          "info": {
+            "name": "List workflow identifiers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/workflow_ids/:project/:domain",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List workflow identifiers"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

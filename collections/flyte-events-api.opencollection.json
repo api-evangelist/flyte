@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Flyte Admin DataProxy Events API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit a workflow execution event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/events/workflows"
+          },
+          "docs": "Submit a workflow execution event"
+        },
+        {
+          "info": {
+            "name": "Submit a node execution event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/events/nodes"
+          },
+          "docs": "Submit a node execution event"
+        },
+        {
+          "info": {
+            "name": "Submit a task execution event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/events/tasks"
+          },
+          "docs": "Submit a task execution event"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

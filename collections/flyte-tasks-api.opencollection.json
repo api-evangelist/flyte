@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Flyte Admin DataProxy Tasks API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Register a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/tasks"
+          },
+          "docs": "Register a task"
+        },
+        {
+          "info": {
+            "name": "List tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/tasks/:id.project/:id.domain",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List tasks"
+        },
+        {
+          "info": {
+            "name": "List tasks for a name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/tasks/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List tasks for a name"
+        },
+        {
+          "info": {
+            "name": "Retrieve a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/tasks/:id.project/:id.domain/:id.name/:id.version",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a task"
+        },
+        {
+          "info": {
+            "name": "List task identifiers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/task_ids/:project/:domain",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List task identifiers"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

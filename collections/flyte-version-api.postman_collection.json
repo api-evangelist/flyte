@@ -1,0 +1,91 @@
+{
+  "item": [
+    {
+      "id": "daa8c560-2907-4510-bbd5-28717ac1476c",
+      "name": "Version",
+      "description": {
+        "content": "Admin server version information.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f0dc4827-701c-4832-9e41-8547e2187696",
+          "name": "Retrieve flyteadmin version",
+          "request": {
+            "name": "Retrieve flyteadmin version",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e86bb3cf-03b1-4886-8825-734602c00101",
+              "name": "Server version information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:30080",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f6b492c5-6883-4e6b-a007-643bdca3cad3",
+    "name": "Flyte Admin DataProxy Version API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Flyte Admin API is the control-plane REST API exposed by the flyteadmin service. It is generated from the flyteidl protocol buffer definitions via gRPC-Gateway and provides JSON over HTTP access to the same operations exposed via gRPC. The API is used to register and manage projects, tasks, workflows, and launch plans, to create and inspect workflow, node, and task executions, to receive lifecycle events, to proxy data to and from upstream object stores, and to read and write matchable attribute overrides at the project, domain, and workflow levels. The same REST API powers the Flyte Console UI and is the primary programmatic interface for operating a Flyte cluster.\n\nContact Support:\n Name: Flyte",
+      "type": "text/plain"
+    }
+  }
+}

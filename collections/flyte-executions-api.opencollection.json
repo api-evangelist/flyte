@@ -1,0 +1,158 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Flyte Admin DataProxy Executions API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Executions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a workflow execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/executions"
+          },
+          "docs": "Create a workflow execution"
+        },
+        {
+          "info": {
+            "name": "Relaunch a workflow execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/executions/relaunch"
+          },
+          "docs": "Relaunch a workflow execution"
+        },
+        {
+          "info": {
+            "name": "Recover a workflow execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:30080/api/v1/executions/recover"
+          },
+          "docs": "Recover a workflow execution"
+        },
+        {
+          "info": {
+            "name": "List workflow executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/executions/:id.project/:id.domain",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List workflow executions"
+        },
+        {
+          "info": {
+            "name": "Retrieve a workflow execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/executions/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a workflow execution"
+        },
+        {
+          "info": {
+            "name": "Terminate a workflow execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:30080/api/v1/executions/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Terminate a workflow execution"
+        },
+        {
+          "info": {
+            "name": "Retrieve execution metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/metrics/executions/:id.project/:id.domain/:id.name",
+            "params": [
+              {
+                "name": "id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve execution metrics"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

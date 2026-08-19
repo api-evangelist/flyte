@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Flyte Admin DataProxy NodeExecutions API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "NodeExecutions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List node executions for a workflow execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:30080/api/v1/node_executions/:workflow_execution_id.project/:workflow_execution_id.domain/:workflow_execution_id.name",
+            "params": [
+              {
+                "name": "workflow_execution_id.project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "workflow_execution_id.domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "workflow_execution_id.name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List node executions for a workflow execution"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
