@@ -30,6 +30,12 @@ tags:
   - CNCF
   - Data Orchestration
   - Kubernetes
+  - Machine-Learning
+  - Workflow-Automation
+tags_raw:
+  - CNCF
+  - Data Orchestration
+  - Kubernetes
   - Machine Learning
   - Workflow Automation
 apis:
@@ -56,6 +62,8 @@ apis:
   humanURL: https://docs.flyte.org
   baseURL: http://localhost:30080
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -73,6 +81,8 @@ apis:
   humanURL: https://docs.flyte.org
   baseURL: http://localhost:30080
   tags:
+  - Execution
+  tags_raw:
   - Executions
   properties:
   - type: OpenAPI
@@ -90,6 +100,8 @@ apis:
   humanURL: https://docs.flyte.org
   baseURL: http://localhost:30080
   tags:
+  - Launch Plans
+  tags_raw:
   - LaunchPlans
   properties:
   - type: OpenAPI
@@ -141,6 +153,8 @@ apis:
   humanURL: https://docs.flyte.org
   baseURL: http://localhost:30080
   tags:
+  - Node Executions
+  tags_raw:
   - NodeExecutions
   properties:
   - type: OpenAPI
@@ -158,6 +172,8 @@ apis:
   humanURL: https://docs.flyte.org
   baseURL: http://localhost:30080
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -175,6 +191,8 @@ apis:
   humanURL: https://docs.flyte.org
   baseURL: http://localhost:30080
   tags:
+  - Task Executions
+  tags_raw:
   - TaskExecutions
   properties:
   - type: OpenAPI
@@ -192,6 +210,8 @@ apis:
   humanURL: https://docs.flyte.org
   baseURL: http://localhost:30080
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
