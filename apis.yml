@@ -9,6 +9,19 @@ description: >-
   manage projects, tasks, workflows, and launch plans, to create and inspect executions, to receive lifecycle events,
   and to read and write matchable attribute overrides.
 type: Index
+deliveryModel:
+  model: self-hosted
+  license: Apache-2.0
+  open_source: true
+  commercial: false
+  callable_host: false
+  label: Self-hosted open source · you run it yourself
+  confidence: high
+  source:
+  - license
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: unknown
