@@ -113,7 +113,7 @@ apis:
   humanURL: https://docs.flyte.org
   baseURL: http://localhost:30080
   tags:
-  - LaunchPlans
+  - Launch Plans
   tags_raw:
   - LaunchPlans
   properties:
@@ -166,7 +166,7 @@ apis:
   humanURL: https://docs.flyte.org
   baseURL: http://localhost:30080
   tags:
-  - NodeExecutions
+  - Node Executions
   tags_raw:
   - NodeExecutions
   properties:
@@ -204,7 +204,7 @@ apis:
   humanURL: https://docs.flyte.org
   baseURL: http://localhost:30080
   tags:
-  - TaskExecutions
+  - Task Executions
   tags_raw:
   - TaskExecutions
   properties:
