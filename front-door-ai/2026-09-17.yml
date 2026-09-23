@@ -1,0 +1,33 @@
+# Front Door AI Index — flyte — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: flyte
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: flyte.org
+  final_host: flyte.org
+  ownership: own
+  owner: flyte
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 33
+  host_score: 33
+  density: 27.21
+  words: 1213
+  tiers:
+    agentic: 12
+    core: 19
+    model: 2
+  ambiguous: 15
+  top_terms:
+    agent: 15
+    AI: 13
+    prompts: 6
+    ML: 5
+    inference: 4
+    OpenAI: 2
+    AI agent: 1
+    agentic: 1
+    generative ai: 1

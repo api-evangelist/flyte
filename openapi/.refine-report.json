@@ -1,18 +1,7 @@
 {
   "provider": "flyte",
   "sources": [
-    "flyte-dataproxy-api-openapi.yml",
-    "flyte-events-api-openapi.yml",
-    "flyte-executions-api-openapi.yml",
-    "flyte-launchplans-api-openapi.yml",
-    "flyte-matchableattributes-api-openapi.yml",
-    "flyte-namedentities-api-openapi.yml",
-    "flyte-nodeexecutions-api-openapi.yml",
-    "flyte-projects-api-openapi.yml",
-    "flyte-taskexecutions-api-openapi.yml",
-    "flyte-tasks-api-openapi.yml",
-    "flyte-version-api-openapi.yml",
-    "flyte-workflows-api-openapi.yml"
+    "_original/flyte-admin-api-openapi.yml"
   ],
   "outputs": [
     "flyte-dataproxy-api-openapi.yml",
@@ -28,9 +17,29 @@
     "flyte-version-api-openapi.yml",
     "flyte-workflows-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 3 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "flyte-admin-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: flyte-launch-plans-api-openapi.yml, flyte-node-executions-api-openapi.yml, flyte-task-executions-api-openapi.yml",
+    "apis.yml register: written (+3 apis, 12 total)"
+  ],
+  "skipped": [
+    "flyte-dataproxy-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "flyte-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "flyte-executions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "flyte-launch-plans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "flyte-matchableattributes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "flyte-namedentities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "flyte-node-executions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "flyte-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "flyte-task-executions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "flyte-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "flyte-version-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "flyte-workflows-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
