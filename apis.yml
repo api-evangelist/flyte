@@ -43,14 +43,16 @@ tags:
   - CNCF
   - Data Orchestration
   - Kubernetes
-  - Machine-Learning
-  - Workflow-Automation
+  - Machine Learning
+  - Workflow Automation
 tags_raw:
   - CNCF
   - Data Orchestration
   - Kubernetes
   - Machine Learning
   - Workflow Automation
+  - Machine-Learning
+  - Workflow-Automation
 apis:
 - aid: flyte:flyte-dataproxy-api
   name: Flyte DataProxy API
