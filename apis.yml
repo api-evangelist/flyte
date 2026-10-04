@@ -267,6 +267,9 @@ apis:
     url: >-
       https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json
 common:
+  - type: CapabilityMap
+    url: capabilities/flyte-capability-edges.yml
+    name: Flyte Business Capability Map
   - type: IssueTracker
     url: https://github.com/flyteorg/flyte/issues
   - type: Releases
