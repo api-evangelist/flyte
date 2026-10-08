@@ -267,6 +267,12 @@ apis:
     url: >-
       https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json
 common:
+  - type: Plans
+    url: plans/flyte-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/flyte-rate-limits.yml
+  - type: FinOps
+    url: finops/flyte-finops.yml
   - type: CapabilityMap
     url: capabilities/flyte-capability-edges.yml
     name: Flyte Business Capability Map
