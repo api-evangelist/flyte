@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json",
+ "final": "https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 306216,
+ "sha256": "ac64796f76d6da9836f8b30f212b0202b32d23c8cd025d562156ffb4c0a8169c",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "re-archived: the provider's current document replaced a stale archive (roadmap#793); the old files are in openapi/_superseded/2026-10-19-stale"
+}
