@@ -10,11 +10,11 @@
   category: AI & data landscape
   type: register
   channel: standard-directory
-  evidence: https://github.com/lfai/landscape/blob/95d361b8abfdd04a8c76bf38a012778d13621b5e/landscape.yml
+  evidence: https://github.com/lfai/landscape/blob/3893e0631e1d12921a9b0ac25ffc78a2ac26239d/landscape.yml
   source: edge
   relationship: standard-participant
   contract_reference:
-    register: LF AI & Data Landscape (github.com/lfai/landscape landscape.yml @95d361b8ab)
+    register: LF AI & Data Landscape (github.com/lfai/landscape landscape.yml @3893e0631e)
     spec_file: null
     standard: LF AI & Data
     role: lfai-project-host
@@ -35,6 +35,42 @@
     signal_note: 'participation only: a landscape listing is standard-participant evidence, not depth. Entries,
       categories, tier and projects are CONTEXT, never read (breadth is not credit)'
     detected_by: sweep-mlops.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
+  status: not-a-workflow
+  arazzo: null
+- slug: flyte-openssf-best-practices-badge-bestpractices-dev
+  label: OpenSSF Best Practices Badge (bestpractices.dev)
+  partner_name: OpenSSF Best Practices Badge (bestpractices.dev)
+  category: OpenSSF Best Practices badge (open-source project security practices)
+  type: register
+  channel: standard-directory
+  evidence: https://www.bestpractices.dev/en/projects/4670
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: OpenSSF Best Practices Badge projects (www.bestpractices.dev/en/projects.json)
+    standard: OpenSSF Best Practices Badge criteria (passing / silver / gold)
+    spec_file: null
+    role: badged-project-owner
+    registered_name: flyte
+    matched_domain: flyte.org
+    matched_by: domain
+    certified_products:
+    - product: open-source project
+      product_type: open-source project
+      standard: OpenSSF Best Practices Badge criteria (passing / silver / gold)
+      partner_tier: passing
+      lapsed: false
+      badge_date: '2021-11-08'
+    badged_projects:
+    - name: flyte
+      id: 4670
+      badge: passing
+      url: https://www.bestpractices.dev/en/projects/4670
+    signal_note: 'certified_products = ONE entry per provider (product type open-source project): highest current
+      OpenSSF Best Practices badge level in partner_tier, earliest date at that level; lapsed: true when every linked
+      project lost its badge. badged_projects is context, never counted'
+    detected_by: sweep-openssf-best-practices-badges.py
+    detected: '2026-10-22'
   status: not-a-workflow
   arazzo: null
