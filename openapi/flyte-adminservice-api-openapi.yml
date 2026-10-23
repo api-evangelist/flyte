@@ -7169,3 +7169,9 @@ components:
           $ref: '#/components/schemas/eventTaskExecutionEvent'
           description: Details about the event that occurred.
       description: Request to send a notification that a task execution event has occurred.
+x-provenance:
+  method: harvested
+  publisher: Flyte
+  source: https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
