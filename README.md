@@ -1,4 +1,4 @@
-# Flyte (flyte)
+# Flyte
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,66 +66,137 @@
 
 Flyte is a Kubernetes-native, open-source workflow orchestration platform for machine learning, data, and analytics pipelines. It provides reproducibility, type safety, strong versioning of tasks and workflows, and a multi-tenant control plane with native first-class scheduling on Kubernetes. Flyte is a Cloud Native Computing Foundation (CNCF) incubating project. Beyond the Python and Go SDKs, Flyte exposes a JSON-over-HTTP REST control-plane API (the Flyte Admin API) generated from the flyteidl protocol buffer definitions via gRPC-Gateway, which is used to register and manage projects, tasks, workflows, and launch plans, to create and inspect executions, to receive lifecycle events, and to read and write matchable attribute overrides.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/flyte/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/flyte/refs/heads/main/apis.yml)
+**Areas:** CNCF · Data Orchestration · Kubernetes · Machine Learning · Workflow Automation
 
-## Scope
+## Flyte on APIs.io
 
-- **Type:** Index
+Everything profiled for Flyte is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/flyte/](https://apis.io/providers/flyte/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (12)
 
-- CNCF
-- Data Orchestration
-- Kubernetes
-- Machine Learning
-- Workflow Automation
+- [Flyte DataProxy API](https://apis.io/apis/flyte/flyte-dataproxy-api/) — Signed URL retrieval for execution data inputs and outputs.
+- [Flyte Events API](https://apis.io/apis/flyte/flyte-events-api/) — Workflow, node, and task execution events.
+- [Flyte Executions API](https://apis.io/apis/flyte/flyte-executions-api/) — Workflow execution creation, listing, retrieval, and termination.
+- [Flyte MatchableAttributes API](https://apis.io/apis/flyte/flyte-matchableattributes-api/) — Matchable attribute configuration at project, domain, and workflow levels.
+- [Flyte NamedEntities API](https://apis.io/apis/flyte/flyte-namedentities-api/) — Named entity metadata for tasks, workflows, and launch plans.
+- [Flyte Projects API](https://apis.io/apis/flyte/flyte-projects-api/) — Project registration and listing.
+- [Flyte Tasks API](https://apis.io/apis/flyte/flyte-tasks-api/) — Task entity registration, listing, and retrieval.
+- [Flyte Version API](https://apis.io/apis/flyte/flyte-version-api/) — Admin server version information.
+- [Flyte Workflows API](https://apis.io/apis/flyte/flyte-workflows-api/) — Workflow entity registration, listing, and retrieval.
+- [Flyte Launch Plans API](https://apis.io/apis/flyte/flyte-launch-plans-api/) — Launch plan registration, listing, retrieval, and activation.
+- [Flyte Node Executions API](https://apis.io/apis/flyte/flyte-node-executions-api/) — Node execution listing and retrieval.
+- [Flyte Task Executions API](https://apis.io/apis/flyte/flyte-task-executions-api/) — Task execution listing and retrieval.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-27
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Flyte Admin API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Flyte Admin API is the control-plane REST API exposed by the flyteadmin service. It is generated from the flyteidl protocol buffer definitions via gRPC-Gateway and provides JSON over HTTP access to the same operations exposed via gRPC. The API is used to register and manage projects, tasks, workflows, and launch plans, to create and inspect workflow, node, and task executions, to receive lifecycle events, to proxy data to and from upstream object stores, and to read and write matchable attribute overrides at the project, domain, and workflow levels. The same REST API powers the Flyte Console UI and is the primary programmatic interface for operating a Flyte cluster.
+- [Flyte Agentic Access](https://apis.io/agentic-access/flyte/flyte-agentic-access/)
 
-- **Human URL:** [https://docs.flyte.org](https://docs.flyte.org)
-- **Base URL:** `http://localhost:30080`
+#### Collections (13)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Workflow Orchestration
-- Control Plane
-- Executions
-- Launch Plans
-- Projects
-- Tasks
-- Workflows
+- [Flyte Admin API](https://apis.io/collections/flyte/open-flyte-admin-api/)
+- [Flyte Admin DataProxy API](https://apis.io/collections/flyte/open-flyte-dataproxy-api/)
+- [Flyte Admin DataProxy Events API](https://apis.io/collections/flyte/open-flyte-events-api/)
+- [Flyte Admin DataProxy Executions API](https://apis.io/collections/flyte/open-flyte-executions-api/)
+- [Flyte Admin DataProxy LaunchPlans API](https://apis.io/collections/flyte/open-flyte-launchplans-api/)
+- [Flyte Admin DataProxy MatchableAttributes API](https://apis.io/collections/flyte/open-flyte-matchableattributes-api/)
+- [Flyte Admin DataProxy NamedEntities API](https://apis.io/collections/flyte/open-flyte-namedentities-api/)
+- [Flyte Admin DataProxy NodeExecutions API](https://apis.io/collections/flyte/open-flyte-nodeexecutions-api/)
+- [Flyte Admin DataProxy Projects API](https://apis.io/collections/flyte/open-flyte-projects-api/)
+- [Flyte Admin DataProxy TaskExecutions API](https://apis.io/collections/flyte/open-flyte-taskexecutions-api/)
+- [Flyte Admin DataProxy Tasks API](https://apis.io/collections/flyte/open-flyte-tasks-api/)
+- [Flyte Admin DataProxy Version API](https://apis.io/collections/flyte/open-flyte-version-api/)
+- [Flyte Admin DataProxy Workflows API](https://apis.io/collections/flyte/open-flyte-workflows-api/)
 
-#### Properties
+#### Security (1)
 
-- [Documentation](https://docs.flyte.org)
-- [OpenAPI](openapi/flyte-admin-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/flyte-admin-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/flyte-admin-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [GitHub Repository](https://github.com/flyteorg/flyte)
-- [Source Swagger](https://raw.githubusercontent.com/flyteorg/flyteidl/master/gen/pb-go/flyteidl/service/admin.swagger.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-## Common Properties
+- [Flyte Domain Security](https://apis.io/security/flyte/flyte-domain-security/)
 
-- [LinkedIn](https://www.linkedin.com/showcase/flyte-oss)
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Flyte Plans Pricing](https://apis.io/plans/flyte/flyte-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Flyte Rate Limits](https://apis.io/rate-limits/flyte/flyte-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Flyte Finops](https://apis.io/finops/flyte/flyte-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://flyte.org)
 - [Documentation](https://docs.flyte.org)
-- [GitHub Repository](https://github.com/flyteorg/flyte)
-- [GitHub Organization](https://github.com/flyteorg)
 - [Blog](https://flyte.org/blog)
-- [Community](https://flyte.org/community)
-- [Slack](https://slack.flyte.org)
-- [Integrations](https://flyte.org/integrations)
+- [GitHub](https://github.com/flyteorg)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 22.8** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 36.1 |
+| Contract governance | 0.0 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 11.9 |
+| Access clarity | 7.9 |
+
+**Agent readiness 15.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 5.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/flyte/](https://apis.io/providers/flyte/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Flyte: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/flyte/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
